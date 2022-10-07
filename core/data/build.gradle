@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+
+apply from: "$rootDir/builder.gradle"
+
+apply plugin: 'kotlin-parcelize'
+
+android {
+    defaultConfig {
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':core:domain')
+
+    implementation(libs.retrofit)
+
+    kapt(kaptLibs.daggerCompiler)
+
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+}

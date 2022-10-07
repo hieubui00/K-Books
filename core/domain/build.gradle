@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+apply from: "$rootDir/builder.gradle"
+
+android {
+    defaultConfig {
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api(
+        libs.core,
+        libs.coroutines,
+        libs.dagger,
+        libs.gson,
+        libs.timber
+    )
+
+    kapt(kaptLibs.daggerCompiler)
+
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+}

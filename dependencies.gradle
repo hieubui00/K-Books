@@ -1,0 +1,82 @@
+ext {
+    versions = [
+        compileSdk        : 33,
+        minSdk            : 23,
+        targetSdk         : 33,
+
+        core              : '1.9.0',
+        coroutines        : '1.6.4',
+
+        appcompat         : '1.5.1',
+        compose           : '1.2.1',
+
+        fragment          : '1.5.3',
+
+        lifecycle         : '2.5.1',
+        navigation        : '2.5.2',
+        room              : '2.4.2',
+        paging            : "3.1.1",
+
+        dagger            : '2.44',
+        gson              : '2.9.1',
+
+        okHTTP            : "4.10.0",
+        retrofit          : "2.9.0",
+
+        coil              : '2.2.2',
+
+        loggingInterceptor: "3.0.0",
+
+        timber            : '5.0.1',
+    ]
+
+    libs = [
+        core                     : "androidx.core:core-ktx:${versions.core}",
+        coroutines               : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
+
+        appcompat                : "androidx.appcompat:appcompat:${versions.appcompat}",
+
+        composeUI                : "androidx.compose.ui:ui:${versions.compose}",
+        composePreview           : "androidx.compose.ui:ui-tooling-preview:${versions.compose}",
+        composeMaterial          : "androidx.compose.material:material:${versions.compose}",
+        composeLiveData          : "androidx.compose.runtime:runtime-livedata:${versions.compose}",
+
+        fragment                 : "androidx.fragment:fragment-ktx:${versions.fragment}",
+
+        lifecycleRuntime         : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}",
+
+        navigationFragment       : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+        navigationUI             : "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
+        navigationDynamicFeatures: "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}",
+
+        room                     : "androidx.room:room-ktx:${versions.room}",
+        roomRuntime              : "androidx.room:room-runtime:${versions.room}",
+
+        paging                   : "androidx.paging:paging-runtime-ktx:${versions.paging}",
+        pagingCompose            : "androidx.paging:paging-compose:1.0.0-alpha16",
+
+        dagger                   : "com.google.dagger:dagger:${versions.dagger}",
+        gson                     : "com.google.code.gson:gson:${versions.gson}",
+
+        okHTTP                   : "com.squareup.okhttp3:okhttp:${versions.okHTTP}",
+
+        retrofit                 : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+        converterGSON            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+
+        coil                     : "io.coil-kt:coil-compose:${versions.coil}",
+
+        loggingInterceptor       : "com.github.ihsanbal:LoggingInterceptor:${versions.loggingInterceptor}",
+
+        timber                   : "com.jakewharton.timber:timber:${versions.timber}",
+    ]
+
+    debugLibs = [
+        composeTooling: "androidx.compose.ui:ui-tooling:${versions.compose}"
+    ]
+
+    kaptLibs = [
+        daggerCompiler: "com.google.dagger:dagger-compiler:${versions.dagger}",
+
+        roomCompiler  : "androidx.room:room-compiler:${versions.room}"
+    ]
+}

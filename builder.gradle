@@ -1,0 +1,29 @@
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdk rootProject.versions.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.versions.minSdk
+        targetSdk rootProject.versions.targetSdk
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'io.mockk:mockk:1.13.1'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+}

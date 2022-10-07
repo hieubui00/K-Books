@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+apply from: "$rootDir/builder.gradle"
+
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+android {
+    defaultConfig {
+        applicationId "com.kma.kbooks"
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    flavorDimensions 'default'
+    productFlavors {
+        develop {
+            applicationIdSuffix '.develop'
+            versionCode 1
+            versionName '1.0.0'
+
+            resValue 'string', 'app_name', 'K-Books Develop'
+            dimension 'default'
+        }
+
+        production {
+            versionCode 1
+            versionName '1.0.0'
+
+            resValue 'string', 'app_name', 'K-Books'
+            dimension 'default'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.1'
+    }
+}
+
+dependencies {
+    implementation project(':resources')
+    implementation project(':core:domain')
+    implementation project(':core:data')
+
+    api(
+        libs.navigationFragment,
+        libs.navigationUI,
+        libs.navigationDynamicFeatures,
+        libs.dagger
+    )
+
+    implementation(
+        libs.okHTTP,
+        libs.retrofit,
+        libs.converterGSON
+    )
+
+    implementation(libs.loggingInterceptor) {
+        exclude group: 'org.json', module: 'json'
+    }
+
+    kapt(kaptLibs.daggerCompiler)
+}
