@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
@@ -79,19 +79,28 @@ class HomeFragment : Fragment() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Box(modifier = Modifier.width(100.dp).height(40.dp).border(1.dp, Color.Black)) {
+                    Box(modifier = Modifier
+                        .width(100.dp)
+                        .height(40.dp)
+                        .border(1.dp, Color.Black)) {
                         Text(
                             modifier = Modifier.align(alignment = Alignment.Center),
                             text = "Nổi bật", fontSize = 14.sp
                         )
                     }
-                    Box(modifier = Modifier.width(100.dp).height(40.dp).border(1.dp, Color.Black)) {
+                    Box(modifier = Modifier
+                        .width(100.dp)
+                        .height(40.dp)
+                        .border(1.dp, Color.Black)) {
                         Text(
                             modifier = Modifier.align(alignment = Alignment.Center),
                             text = "Tất cả", fontSize = 14.sp
                         )
                     }
-                    Box(modifier = Modifier.width(100.dp).height(40.dp).border(1.dp, Color.Black)) {
+                    Box(modifier = Modifier
+                        .width(100.dp)
+                        .height(40.dp)
+                        .border(1.dp, Color.Black)) {
                         Text(
                             modifier = Modifier.align(alignment = Alignment.Center),
                             text = "Mới cập nhập", fontSize = 14.sp
@@ -132,6 +141,144 @@ class HomeFragment : Fragment() {
                             .wrapContentHeight()
                             .wrapContentWidth()
                     )
+                }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .padding(10.dp)
+                    ,
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+
+                        Text(
+                            //modifier = Modifier.align(alignment = Alignment.Center),
+                            text = "Mới Nhất", fontSize = 20.sp
+                        )
+
+
+                    Row(verticalAlignment = Alignment.CenterVertically,) {
+                        Text(
+
+                            text = "Tất cả", fontSize = 14.sp
+                        )
+                        FloatingActionButton(backgroundColor = Color.White,onClick = { /*TODO*/ }) {
+                            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null )
+                        }
+                    }
+
+
+
+                }
+
+                LazyRow(modifier = Modifier.padding(10.dp)){
+                    items(10) {
+                        Column(
+                            modifier = Modifier
+                                .width(100.dp)
+                                .height(200.dp)
+                                .padding(10.dp),
+                            verticalArrangement = Arrangement.Top,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                // on below line we are adding the image url
+                                // from which we will  be loading our image.
+                                painter = rememberAsyncImagePainter("https://cdn-amz.woka.io/images/I/81R2N4PRuUL.jpg"),
+
+                                // on below line we are adding content
+                                // description for our image.
+                                contentDescription = "gfg image",
+
+                                // on below line we are adding modifier for our
+                                // image as wrap content for height and width.
+                                modifier = Modifier
+                                    .wrapContentSize()
+                                    .wrapContentHeight()
+                                    .wrapContentWidth()
+                            )
+                            Text(
+
+                                text = "Tiêu đề ", fontSize = 18.sp, fontWeight = FontWeight.Bold
+                            )
+                            Text(
+
+                                text = "Tác giả", fontSize = 12.sp
+                            )
+                        }
+                    }
+                }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .padding(10.dp)
+                    ,
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+
+                    Text(
+                        //modifier = Modifier.align(alignment = Alignment.Center),
+                        text = "Sách hay mỗi ngày", fontSize = 20.sp
+                    )
+
+
+                    Row(verticalAlignment = Alignment.CenterVertically,) {
+                        Text(
+
+                            text = "Tất cả", fontSize = 14.sp
+                        )
+                        FloatingActionButton(backgroundColor = Color.White,onClick = { /*TODO*/ }) {
+                            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null )
+                        }
+                    }
+
+
+
+                }
+
+                LazyRow(modifier = Modifier.padding(10.dp)){
+                    items(10) {
+                        Column(
+                            modifier = Modifier
+                                .width(100.dp)
+                                .height(200.dp)
+                                .padding(10.dp),
+                            verticalArrangement = Arrangement.Top,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                // on below line we are adding the image url
+                                // from which we will  be loading our image.
+                                painter = rememberAsyncImagePainter("https://cdn-amz.woka.io/images/I/81R2N4PRuUL.jpg"),
+
+                                // on below line we are adding content
+                                // description for our image.
+                                contentDescription = "gfg image",
+
+                                // on below line we are adding modifier for our
+                                // image as wrap content for height and width.
+                                modifier = Modifier
+                                    .wrapContentSize()
+                                    .wrapContentHeight()
+                                    .wrapContentWidth()
+                            )
+                            Text(
+
+                                text = "Tiêu đề ", fontSize = 18.sp, fontWeight = FontWeight.Bold
+                            )
+                            Text(
+
+                                text = "Tác giả", fontSize = 12.sp
+                            )
+                        }
+                    }
                 }
             }
 
