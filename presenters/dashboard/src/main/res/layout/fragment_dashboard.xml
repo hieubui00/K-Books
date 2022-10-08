@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment_home"
+        android:id="@+id/nav_host_fragment_dashboard"
         android:name="androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -16,11 +16,14 @@
         app:navGraph="@navigation/nav_graph_dashboard" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav"
+        android:id="@+id/nav_dashboard"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:elevation="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:elevation="4dp"
+        app:itemIconTint="@color/toggle"
         app:itemRippleColor="@null"
+        app:itemTextColor="@color/toggle"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_dashboard" />

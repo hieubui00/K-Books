@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#33BEAD</color>
+    <color name="background">@android:color/white</color>
+    <color name="surface">@android:color/white</color>
+    <color name="error">#FF212C</color>
+    <color name="onBackground">#50565E</color>
+    <color name="onSurface">#50565E</color>
+</resources>
