@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_home">Home</string>
+    <string name="label_hot">Hot</string>
+    <string name="label_new_updated">New Updated</string>
+    <string name="label_completed">Completed</string>
     <string name="thumbnail">Thumbnail</string>
+    <string name="more">More</string>
 </resources>
