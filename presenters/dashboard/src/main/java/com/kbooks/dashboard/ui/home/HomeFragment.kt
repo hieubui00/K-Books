@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material.Text
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.Fragment
+import com.kbooks.dashboard.R
+import com.kbooks.dashboard.ui.home.component.ActionBar
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 
 class HomeFragment : Fragment() {
@@ -29,11 +29,12 @@ class HomeFragment : Fragment() {
 
     @Composable
     private fun Content() {
-        Box {
-            Text(
-                modifier = Modifier.align(alignment = Alignment.Center),
-                text = "Home"
-            )
+        Scaffold(
+            topBar = {
+                ActionBar(title = stringResource(id = R.string.title_home))
+            },
+        ) {
+
         }
     }
 }
