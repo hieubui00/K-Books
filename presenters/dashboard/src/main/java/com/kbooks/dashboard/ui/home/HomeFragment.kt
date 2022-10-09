@@ -25,6 +25,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import com.kbooks.dashboard.R
 import com.kbooks.dashboard.ui.DashboardFragment
 import com.kbooks.dashboard.ui.home.component.ActionBar
@@ -32,14 +34,21 @@ import com.kbooks.dashboard.ui.home.component.MoreButton
 import com.kbooks.dashboard.ui.home.component.StoryCard
 import com.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
+import com.kma.kbooks.util.ViewModelFactory
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
+    private val viewModel by viewModels<HomeViewModel> { factory }
+
+    @Inject
+    lateinit var factory: ViewModelFactory<HomeViewModel>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (parentFragment as? DashboardFragment)
-            ?.component
-            ?.inject(this)
+        val navHostFragment = parentFragment as? NavHostFragment
+        val dashboardFragment = navHostFragment?.parentFragment as? DashboardFragment
+
+        dashboardFragment?.component?.inject(this)
     }
 
     override fun onCreateView(
