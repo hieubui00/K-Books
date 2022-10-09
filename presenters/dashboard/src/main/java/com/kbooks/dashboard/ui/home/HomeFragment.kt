@@ -17,6 +17,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -78,31 +80,33 @@ class HomeFragment : Fragment() {
                     .background(color = MaterialTheme.colors.surface)
                     .verticalScroll(scrollState)
             ) {
-                val stories = (0..20).map {
-                    Story(
-                        title = "Tôi thấy hoa vàng trên cỏ xanh",
-                        author = "Nguyễn Nhật Ánh",
-                        thumbnail = "https://static.8cache.com/cover/o/eJzLyTDW1zVO8s1OMwjyyksu1w_LKDD1TvPNNqry1HeEAqeCZP2K0Arzwkhvy-CCfP1iA13PZBMjAD6rEqM=/toi-thay-hoa-vang-tren-co-xanh.jpg"
+                val hotStories by viewModel.hotStories.observeAsState()
+                val newUpdatedStories by viewModel.newUpdatedStories.observeAsState()
+                val completedStories by viewModel.completedStories.observeAsState()
+
+                hotStories?.let { stories ->
+                    StoriesSection(
+                        modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
+                        label = stringResource(R.string.label_hot),
+                        stories = stories
                     )
                 }
 
-                StoriesSection(
-                    modifier = Modifier.padding(top = 16.dp),
-                    label = stringResource(R.string.label_hot),
-                    stories = stories
-                )
+                newUpdatedStories?.let { stories ->
+                    StoriesSection(
+                        modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
+                        label = stringResource(R.string.label_new_updated),
+                        stories = stories
+                    )
+                }
 
-                StoriesSection(
-                    modifier = Modifier.padding(top = 24.dp),
-                    label = stringResource(R.string.label_new_updated),
-                    stories = stories
-                )
-
-                StoriesSection(
-                    modifier = Modifier.padding(top = 24.dp, bottom = 16.dp),
-                    label = stringResource(R.string.label_completed),
-                    stories = stories
-                )
+                completedStories?.let { stories ->
+                    StoriesSection(
+                        modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
+                        label = stringResource(R.string.label_completed),
+                        stories = stories
+                    )
+                }
             }
         }
     }

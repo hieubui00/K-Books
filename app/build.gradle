@@ -58,6 +58,7 @@ dependencies {
     implementation project(':core:data')
 
     api(
+        libs.composeLiveData,
         libs.navigationFragment,
         libs.navigationUI,
         libs.navigationDynamicFeatures,
