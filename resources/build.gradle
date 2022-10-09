@@ -33,13 +33,15 @@ dependencies {
         libs.core,
         libs.appcompat,
         libs.composeUI,
-        libs.composeMaterial,
         libs.composePreview,
+        libs.composeMaterial,
         libs.fragment,
         libs.dagger,
         libs.coil,
         libs.timber
     )
+
+    debugImplementation(libs.composeTooling)
 
     kapt(kaptLibs.daggerCompiler)
 }

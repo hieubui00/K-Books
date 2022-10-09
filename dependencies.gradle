@@ -37,8 +37,10 @@ ext {
         appcompat                : "androidx.appcompat:appcompat:${versions.appcompat}",
 
         composeUI                : "androidx.compose.ui:ui:${versions.compose}",
+        composeTooling           : "androidx.compose.ui:ui-tooling:${versions.compose}",
         composePreview           : "androidx.compose.ui:ui-tooling-preview:${versions.compose}",
         composeMaterial          : "androidx.compose.material:material:${versions.compose}",
+
         composeLiveData          : "androidx.compose.runtime:runtime-livedata:${versions.compose}",
 
         fragment                 : "androidx.fragment:fragment-ktx:${versions.fragment}",
@@ -68,10 +70,6 @@ ext {
         loggingInterceptor       : "com.github.ihsanbal:LoggingInterceptor:${versions.loggingInterceptor}",
 
         timber                   : "com.jakewharton.timber:timber:${versions.timber}",
-    ]
-
-    debugLibs = [
-        composeTooling: "androidx.compose.ui:ui-tooling:${versions.compose}"
     ]
 
     kaptLibs = [
