@@ -1,5 +1,6 @@
 package com.kbooks.dashboard.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.kbooks.dashboard.R
+import com.kbooks.dashboard.ui.DashboardFragment
 import com.kbooks.dashboard.ui.home.component.ActionBar
 import com.kbooks.dashboard.ui.home.component.MoreButton
 import com.kbooks.dashboard.ui.home.component.StoryCard
@@ -32,6 +34,13 @@ import com.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 
 class HomeFragment : Fragment() {
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (parentFragment as? DashboardFragment)
+            ?.component
+            ?.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
