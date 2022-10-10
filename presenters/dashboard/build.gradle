@@ -1,1 +1,5 @@
 apply from: "$rootDir/feature-builder.gradle"
+
+android {
+    namespace 'com.kma.kbooks.dashboard'
+}

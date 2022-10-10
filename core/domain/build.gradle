@@ -3,6 +3,8 @@ apply plugin: 'com.android.library'
 apply from: "$rootDir/builder.gradle"
 
 android {
+    namespace 'com.kma.kbooks.domain'
+
     defaultConfig {
         consumerProguardFiles 'consumer-rules.pro'
     }
