@@ -1,7 +1,7 @@
 package com.kma.kbooks.domain.data.model
 
 data class Story(
-    val storyId: Int?,
+    val storyId: String?,
 
     val title: String?,
 

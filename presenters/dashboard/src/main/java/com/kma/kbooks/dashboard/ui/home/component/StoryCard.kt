@@ -78,7 +78,7 @@ private fun StoryCardPreview() {
         StoryCard(
             modifier = Modifier.background(color = Color.White),
             story = Story(
-                storyId = 1,
+                storyId = "1",
                 title = "Tôi thấy hoa vàng trên cỏ xanh",
                 author = Author(
                     authorId = 1,

@@ -36,7 +36,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     private fun getData(): Job = viewModelScope.launch(context = SupervisorJob()) {
         val stories = (0..20).map {
             Story(
-                storyId = it + 1,
+                storyId = "${it + 1}",
                 title = "Tôi thấy hoa vàng trên cỏ xanh",
                 author = Author(
                     authorId = 1,
