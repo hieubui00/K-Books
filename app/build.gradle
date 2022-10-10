@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply from: "$rootDir/builder.gradle"
 
 apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     defaultConfig {
@@ -64,16 +65,6 @@ dependencies {
         libs.navigationDynamicFeatures,
         libs.dagger
     )
-
-    implementation(
-        libs.okHTTP,
-        libs.retrofit,
-        libs.converterGSON
-    )
-
-    implementation(libs.loggingInterceptor) {
-        exclude group: 'org.json', module: 'json'
-    }
 
     kapt(kaptLibs.daggerCompiler)
 }
