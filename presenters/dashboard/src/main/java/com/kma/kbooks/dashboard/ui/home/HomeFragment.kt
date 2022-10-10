@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -21,10 +26,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -84,7 +91,7 @@ class HomeFragment : Fragment() {
                 val newUpdatedStories by viewModel.newUpdatedStories.observeAsState()
                 val completedStories by viewModel.completedStories.observeAsState()
 
-                hotStories?.takeIf { stories ->  stories.isNotEmpty() }?.let { stories ->
+                hotStories?.let { stories ->
                     StoriesSection(
                         modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
                         label = stringResource(R.string.label_hot),
@@ -92,7 +99,7 @@ class HomeFragment : Fragment() {
                     )
                 }
 
-                newUpdatedStories?.takeIf { stories ->  stories.isNotEmpty() }?.let { stories ->
+                newUpdatedStories?.let { stories ->
                     StoriesSection(
                         modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
                         label = stringResource(R.string.label_new_updated),
@@ -100,7 +107,7 @@ class HomeFragment : Fragment() {
                     )
                 }
 
-                completedStories?.takeIf { stories ->  stories.isNotEmpty() }?.let { stories ->
+                completedStories?.let { stories ->
                     StoriesSection(
                         modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
                         label = stringResource(R.string.label_completed),
@@ -124,6 +131,20 @@ class HomeFragment : Fragment() {
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h6
             )
+
+            if (stories.isEmpty()) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp)
+                        .padding(horizontal = 16.dp)
+                        .align(alignment = CenterHorizontally),
+                    text = "No stories found!",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.caption
+                )
+                return@Column
+            }
 
             LazyRow(
                 modifier = Modifier.padding(top = 8.dp),
