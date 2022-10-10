@@ -13,4 +13,12 @@ class StoryRepositoryImpl @Inject constructor(
     override suspend fun getHotStories(page: Int): List<Story> {
         return storyRemoteDataSource.getHotStories().map { it.asEntity() }
     }
+
+    override suspend fun getNewUpdatedStories(page: Int): List<Story> {
+        return storyRemoteDataSource.getNewUpdatedStories().map { it.asEntity() }
+    }
+
+    override suspend fun getCompletedStories(page: Int): List<Story> {
+        return storyRemoteDataSource.getCompletedStories().map { it.asEntity() }
+    }
 }

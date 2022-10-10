@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
                 val newUpdatedStories by viewModel.newUpdatedStories.observeAsState()
                 val completedStories by viewModel.completedStories.observeAsState()
 
-                hotStories?.let { stories ->
+                hotStories?.takeIf { stories ->  stories.isNotEmpty() }?.let { stories ->
                     StoriesSection(
                         modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
                         label = stringResource(R.string.label_hot),
@@ -92,7 +92,7 @@ class HomeFragment : Fragment() {
                     )
                 }
 
-                newUpdatedStories?.let { stories ->
+                newUpdatedStories?.takeIf { stories ->  stories.isNotEmpty() }?.let { stories ->
                     StoriesSection(
                         modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
                         label = stringResource(R.string.label_new_updated),
@@ -100,7 +100,7 @@ class HomeFragment : Fragment() {
                     )
                 }
 
-                completedStories?.let { stories ->
+                completedStories?.takeIf { stories ->  stories.isNotEmpty() }?.let { stories ->
                     StoriesSection(
                         modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
                         label = stringResource(R.string.label_completed),
