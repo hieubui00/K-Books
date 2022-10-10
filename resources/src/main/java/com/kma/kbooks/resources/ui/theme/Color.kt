@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import com.kma.kbooks.resources.R
 
-val colors: Colors
+internal val colors: Colors
     @Composable
     get() = lightColors(
         primary = colorResource(id = R.color.primary),

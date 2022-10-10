@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "78826668392",
+    "project_id": "k-books-e5bae",
+    "storage_bucket": "k-books-e5bae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78826668392:android:c4d54fb84ebb37b930d6dd",
+        "android_client_info": {
+          "package_name": "com.kma.kbooks.develop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78826668392-gd5erjaolu1l65v08kuicllq1gb619rs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kma.kbooks.develop",
+            "certificate_hash": "6c26ac9c098f83d8768777c0f93824065524796b"
+          }
+        },
+        {
+          "client_id": "78826668392-meloaclk175bndrfvohdon4n7260obbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAD1bvM4ByD4HaQvYAn3Bk9SGa7_1TVuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78826668392-meloaclk175bndrfvohdon4n7260obbi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

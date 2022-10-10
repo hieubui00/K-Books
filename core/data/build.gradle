@@ -25,7 +25,10 @@ android {
 dependencies {
     implementation project(':core:domain')
 
-    implementation(libs.retrofit)
+    implementation(
+        libs.coroutinesPlayService,
+        libs.firestore
+    )
 
     kapt(kaptLibs.daggerCompiler)
 
