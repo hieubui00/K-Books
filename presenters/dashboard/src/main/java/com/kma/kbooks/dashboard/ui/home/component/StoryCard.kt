@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.kma.kbooks.dashboard.R
-import com.kma.kbooks.domain.data.model.Author
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import kotlinx.coroutines.Dispatchers
@@ -61,7 +60,7 @@ internal fun StoryCard(
         )
 
         Text(   // Author
-            text = story.author?.name.orEmpty(),
+            text = story.author.orEmpty(),
             color = Color(0xFF888E96),
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
@@ -80,10 +79,7 @@ private fun StoryCardPreview() {
             story = Story(
                 storyId = "1",
                 title = "Tôi thấy hoa vàng trên cỏ xanh",
-                author = Author(
-                    authorId = 1,
-                    name = "Nguyễn Nhật Ánh"
-                ),
+                author = "Nguyễn Nhật Ánh",
                 thumbnail = null
             )
         )

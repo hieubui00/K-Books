@@ -9,12 +9,14 @@ data class StoryRemoteModel(
 
     val title: String?,
 
-    val thumbnail: String?
+    val thumbnail: String?,
+
+    val author: String?
 )
 
 internal fun StoryRemoteModel.asEntity(): Story = Story(
     storyId = this.storyId,
     title = this.title,
-    author = null,
+    author = this.author,
     thumbnail = this.thumbnail
 )

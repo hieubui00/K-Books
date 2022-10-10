@@ -136,10 +136,12 @@ class HomeFragment : Fragment() {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 8.dp)
-                        .padding(horizontal = 16.dp)
+                        .padding(
+                            horizontal = 16.dp,
+                            vertical = 64.dp
+                        )
                         .align(alignment = CenterHorizontally),
-                    text = "No stories found!",
+                    text = stringResource(R.string.message_no_stories_found),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.caption
                 )

@@ -6,4 +6,5 @@
     <string name="label_completed">Completed</string>
     <string name="thumbnail">Thumbnail</string>
     <string name="more">More</string>
+    <string name="message_no_stories_found">No stories found!</string>
 </resources>

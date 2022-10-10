@@ -5,7 +5,7 @@ data class Story(
 
     val title: String?,
 
-    val author: Author?,
+    val author: String?,
 
     val thumbnail: String?
 )
