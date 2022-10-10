@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment_dashboard"
-        android:name="com.kbooks.dashboard.ui.DashboardFragment"
+        android:name="com.kma.kbooks.dashboard.ui.DashboardFragment"
         android:label="@string/title_dashboard"
         app:moduleName="dashboard" />
 

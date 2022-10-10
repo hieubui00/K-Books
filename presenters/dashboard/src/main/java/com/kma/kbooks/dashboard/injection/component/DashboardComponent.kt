@@ -1,7 +1,7 @@
-package com.kbooks.dashboard.injection.component
+package com.kma.kbooks.dashboard.injection.component
 
-import com.kbooks.dashboard.injection.scope.DashboardScope
-import com.kbooks.dashboard.ui.home.HomeFragment
+import com.kma.kbooks.dashboard.injection.scope.DashboardScope
+import com.kma.kbooks.dashboard.ui.home.HomeFragment
 import com.kma.kbooks.injection.component.MainComponent
 import dagger.Component
 

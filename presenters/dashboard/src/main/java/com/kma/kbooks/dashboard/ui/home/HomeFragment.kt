@@ -1,4 +1,4 @@
-package com.kbooks.dashboard.ui.home
+package com.kma.kbooks.dashboard.ui.home
 
 import android.content.Context
 import android.os.Bundle
@@ -29,12 +29,12 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
-import com.kbooks.dashboard.R
-import com.kbooks.dashboard.ui.DashboardFragment
-import com.kbooks.dashboard.ui.home.component.ActionBar
-import com.kbooks.dashboard.ui.home.component.MoreButton
-import com.kbooks.dashboard.ui.home.component.StoryCard
-import com.kbooks.domain.data.model.Story
+import com.kma.kbooks.dashboard.R
+import com.kma.kbooks.dashboard.ui.DashboardFragment
+import com.kma.kbooks.dashboard.ui.home.component.ActionBar
+import com.kma.kbooks.dashboard.ui.home.component.MoreButton
+import com.kma.kbooks.dashboard.ui.home.component.StoryCard
+import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.util.ViewModelFactory
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.kbooks.dashboard.ui.home.component
+package com.kma.kbooks.dashboard.ui.home.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,8 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.kbooks.dashboard.R
-import com.kbooks.domain.data.model.Story
+import com.kma.kbooks.dashboard.R
+import com.kma.kbooks.domain.data.model.Author
+import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import kotlinx.coroutines.Dispatchers
 
@@ -60,7 +61,7 @@ internal fun StoryCard(
         )
 
         Text(   // Author
-            text = story.author.orEmpty(),
+            text = story.author?.name.orEmpty(),
             color = Color(0xFF888E96),
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
@@ -77,8 +78,12 @@ private fun StoryCardPreview() {
         StoryCard(
             modifier = Modifier.background(color = Color.White),
             story = Story(
+                storyId = 1,
                 title = "Tôi thấy hoa vàng trên cỏ xanh",
-                author = "Nguyễn Nhật Ánh",
+                author = Author(
+                    authorId = 1,
+                    name = "Nguyễn Nhật Ánh"
+                ),
                 thumbnail = null
             )
         )

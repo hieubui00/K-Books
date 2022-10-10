@@ -1,4 +1,4 @@
-package com.kbooks.dashboard.ui.home.component
+package com.kma.kbooks.dashboard.ui.home.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.kbooks.dashboard.R
+import com.kma.kbooks.dashboard.R
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 
 @Composable

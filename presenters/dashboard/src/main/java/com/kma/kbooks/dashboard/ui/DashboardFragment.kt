@@ -1,10 +1,10 @@
-package com.kbooks.dashboard.ui
+package com.kma.kbooks.dashboard.ui
 
 import android.content.Context
 import androidx.fragment.app.Fragment
-import com.kbooks.dashboard.R
-import com.kbooks.dashboard.injection.component.DaggerDashboardComponent
-import com.kbooks.dashboard.injection.component.DashboardComponent
+import com.kma.kbooks.dashboard.R
+import com.kma.kbooks.dashboard.injection.component.DaggerDashboardComponent
+import com.kma.kbooks.dashboard.injection.component.DashboardComponent
 import com.kma.kbooks.ui.main.MainActivity
 
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {

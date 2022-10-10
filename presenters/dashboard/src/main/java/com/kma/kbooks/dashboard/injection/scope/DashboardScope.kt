@@ -1,4 +1,4 @@
-package com.kbooks.dashboard.injection.scope
+package com.kma.kbooks.dashboard.injection.scope
 
 import javax.inject.Scope
 
