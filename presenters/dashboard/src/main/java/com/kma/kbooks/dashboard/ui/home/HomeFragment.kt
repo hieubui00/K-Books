@@ -125,7 +125,7 @@ class HomeFragment : Fragment() {
         stories: List<Story> = listOf()
     ) {
         Column(modifier = modifier) {
-            Text(   // Label
+            Text( // Label
                 modifier = Modifier.padding(start = 16.dp),
                 text = label.orEmpty(),
                 fontWeight = FontWeight.Bold,

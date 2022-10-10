@@ -42,7 +42,7 @@ internal fun StoryCard(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(space = 4.dp)
     ) {
-        AsyncImage(     // Thumbnail
+        AsyncImage( // Thumbnail
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(ratio = 2f / 3f),
@@ -51,7 +51,7 @@ internal fun StoryCard(
             contentDescription = stringResource(R.string.thumbnail)
         )
 
-        Text(   // Title
+        Text( // Title
             text = story.title.orEmpty(),
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
@@ -59,7 +59,7 @@ internal fun StoryCard(
             style = MaterialTheme.typography.body1
         )
 
-        Text(   // Author
+        Text( // Author
             text = story.author.orEmpty(),
             color = Color(0xFF888E96),
             textAlign = TextAlign.Center,
