@@ -27,14 +27,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.story.details.R
 import com.kma.kbooks.story.details.injection.component.DaggerStoryDetailsComponent
 import com.kma.kbooks.story.details.ui.component.*
 import com.kma.kbooks.ui.main.MainActivity
+import com.kma.kbooks.util.ViewModelFactory
+import javax.inject.Inject
 
 class StoryDetailsFragment : Fragment() {
+    private val viewModel by viewModels<StoryDetailsViewModel> { factory }
+
+    @Inject
+    lateinit var factory: ViewModelFactory<StoryDetailsViewModel>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
