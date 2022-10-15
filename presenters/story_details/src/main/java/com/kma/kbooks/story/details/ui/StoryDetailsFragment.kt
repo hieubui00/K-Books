@@ -1,5 +1,6 @@
 package com.kma.kbooks.story.details.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,9 +30,21 @@ import androidx.fragment.app.Fragment
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.story.details.R
+import com.kma.kbooks.story.details.injection.component.DaggerStoryDetailsComponent
 import com.kma.kbooks.story.details.ui.component.*
+import com.kma.kbooks.ui.main.MainActivity
 
 class StoryDetailsFragment : Fragment() {
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val mainComponent = (activity as? MainActivity)?.component
+
+        DaggerStoryDetailsComponent.builder()
+            .mainComponent(mainComponent)
+            .build()
+            .inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
