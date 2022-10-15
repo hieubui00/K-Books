@@ -1,3 +1,4 @@
 <resources>
     <string name="title_dashboard">Dashboard</string>
+    <string name="title_story_details">Story Details</string>
 </resources>

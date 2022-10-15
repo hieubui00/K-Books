@@ -52,7 +52,7 @@ android {
         kotlinCompilerExtensionVersion '1.3.1'
     }
 
-    dynamicFeatures = [':presenters:dashboard']
+    dynamicFeatures = [':presenters:dashboard', ':presenters:story_details']
 }
 
 dependencies {
