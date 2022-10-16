@@ -22,6 +22,9 @@ ext {
         dagger            : '2.44',
         gson              : '2.9.1',
 
+        okHTTP            : "4.10.0",
+        retrofit          : "2.9.0",
+
         coil              : '2.2.2',
 
         loggingInterceptor: "3.0.0",
@@ -61,6 +64,11 @@ ext {
 
         dagger                   : "com.google.dagger:dagger:${versions.dagger}",
         gson                     : "com.google.code.gson:gson:${versions.gson}",
+
+        okHTTP                   : "com.squareup.okhttp3:okhttp:${versions.okHTTP}",
+
+        retrofit                 : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+        converterGSON            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
 
         coil                     : "io.coil-kt:coil-compose:${versions.coil}",
 

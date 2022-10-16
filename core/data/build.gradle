@@ -29,7 +29,8 @@ dependencies {
 
     implementation(
         libs.coroutinesPlayService,
-        libs.firestore
+        libs.firestore,
+        libs.retrofit
     )
 
     kapt(kaptLibs.daggerCompiler)
