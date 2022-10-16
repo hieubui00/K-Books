@@ -1,7 +1,7 @@
 package com.kma.kbooks.domain.data.repository
 
-import com.kma.kbooks.domain.data.model.story.Story
-import com.kma.kbooks.domain.data.model.story.StoryDetails
+import com.kma.kbooks.domain.data.model.Story
+import com.kma.kbooks.domain.data.model.StoryDetails
 
 interface StoryRepository {
 

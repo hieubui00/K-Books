@@ -2,7 +2,7 @@ package com.kma.kbooks.data.remote.model.story
 
 import com.kma.kbooks.data.remote.model.GenreRemoteModel
 import com.kma.kbooks.data.remote.model.asEntity
-import com.kma.kbooks.domain.data.model.story.StoryDetails
+import com.kma.kbooks.domain.data.model.StoryDetails
 import java.util.Date
 
 data class StoryDetailsRemoteModel(

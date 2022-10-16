@@ -11,7 +11,8 @@ import kotlinx.coroutines.Dispatchers
 @Composable
 internal fun Backdrop(
     modifier: Modifier = Modifier,
-    data: String?
+    data: String?,
+    contentScale: ContentScale = ContentScale.Crop,
 ) {
     val context = LocalContext.current
     val model = ImageRequest.Builder(context)
@@ -23,7 +24,7 @@ internal fun Backdrop(
     AsyncImage(
         modifier = modifier,
         model = model,
-        contentScale = ContentScale.Crop,
+        contentScale = contentScale,
         contentDescription = null,
     )
 }

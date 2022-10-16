@@ -1,7 +1,7 @@
 package com.kma.kbooks.data.remote.model.story
 
 import com.google.firebase.firestore.DocumentId
-import com.kma.kbooks.domain.data.model.story.Story
+import com.kma.kbooks.domain.data.model.Story
 
 class StoryRemoteModel {
     @DocumentId

@@ -2,8 +2,8 @@ package com.kma.kbooks.data.repository
 
 import com.kma.kbooks.data.remote.model.story.asEntity
 import com.kma.kbooks.data.source.StoryRemoteDataSource
-import com.kma.kbooks.domain.data.model.story.Story
-import com.kma.kbooks.domain.data.model.story.StoryDetails
+import com.kma.kbooks.domain.data.model.Story
+import com.kma.kbooks.domain.data.model.StoryDetails
 import com.kma.kbooks.domain.data.repository.StoryRepository
 import javax.inject.Inject
 

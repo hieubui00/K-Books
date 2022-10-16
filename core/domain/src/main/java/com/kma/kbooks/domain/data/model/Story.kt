@@ -1,7 +1,16 @@
-package com.kma.kbooks.domain.data.model.story
+package com.kma.kbooks.domain.data.model
 
-import com.kma.kbooks.domain.data.model.Genre
-import java.util.*
+import java.util.Date
+
+data class Story(
+    val storyId: String?,
+
+    val title: String?,
+
+    val author: String?,
+
+    val thumbnail: String?
+)
 
 data class StoryDetails(
     val storyId: Int?,

@@ -36,7 +36,7 @@ internal fun MetadataColumn(
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
             text = value.orEmpty(),
-            style = MaterialTheme.typography.caption
+            style = MaterialTheme.typography.body1
         )
     }
 }
