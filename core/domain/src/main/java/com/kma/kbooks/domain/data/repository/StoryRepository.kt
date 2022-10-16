@@ -1,6 +1,7 @@
 package com.kma.kbooks.domain.data.repository
 
-import com.kma.kbooks.domain.data.model.Story
+import com.kma.kbooks.domain.data.model.story.Story
+import com.kma.kbooks.domain.data.model.story.StoryDetails
 
 interface StoryRepository {
 
@@ -9,4 +10,6 @@ interface StoryRepository {
     suspend fun getNewUpdatedStories(page: Int = 1): List<Story>
 
     suspend fun getCompletedStories(page: Int = 1): List<Story>
+
+    suspend fun getStoryDetails(storyId: Int): StoryDetails?
 }

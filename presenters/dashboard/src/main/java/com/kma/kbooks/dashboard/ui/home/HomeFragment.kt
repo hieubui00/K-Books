@@ -41,7 +41,7 @@ import com.kma.kbooks.dashboard.ui.DashboardFragment
 import com.kma.kbooks.dashboard.ui.home.component.ActionBar
 import com.kma.kbooks.dashboard.ui.home.component.MoreButton
 import com.kma.kbooks.dashboard.ui.home.component.StoryCard
-import com.kma.kbooks.domain.data.model.Story
+import com.kma.kbooks.domain.data.model.story.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.util.ViewModelFactory
 import javax.inject.Inject

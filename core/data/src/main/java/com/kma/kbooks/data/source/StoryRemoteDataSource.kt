@@ -4,7 +4,9 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.kma.kbooks.data.remote.model.StoryRemoteModel
+import com.kma.kbooks.data.remote.model.story.StoryDetailsRemoteModel
+import com.kma.kbooks.data.remote.model.story.StoryRemoteModel
+import com.kma.kbooks.data.remote.request.KBooksService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -18,9 +20,13 @@ interface StoryRemoteDataSource {
     suspend fun getNewUpdatedStories(): List<StoryRemoteModel>
 
     suspend fun getCompletedStories(): List<StoryRemoteModel>
+
+    suspend fun getStoryDetails(storyId: Int): StoryDetailsRemoteModel?
 }
 
 class StoryRemoteDataSourceImpl @Inject constructor(
+    private val kBooksService: KBooksService,
+
     @Named("io") private val ioDispatcher: CoroutineDispatcher
 ) : StoryRemoteDataSource {
     private val collectionStories: CollectionReference
@@ -45,6 +51,12 @@ class StoryRemoteDataSourceImpl @Inject constructor(
             .get()
             .await()
             .toObjects(StoryRemoteModel::class.java)
+    }
+
+    override suspend fun getStoryDetails(storyId: Int): StoryDetailsRemoteModel? = withContext(ioDispatcher) {
+        val response = kBooksService.getStoryDetails(storyId)
+
+        return@withContext response.data
     }
 
     companion object {

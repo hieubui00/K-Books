@@ -9,7 +9,7 @@ import dagger.BindsInstance
 import dagger.Subcomponent
 
 @MainScope
-@Subcomponent(modules = [RepositoryModule::class])
+@Subcomponent
 interface MainComponent {
 
     fun storyRepository(): StoryRepository

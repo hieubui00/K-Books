@@ -1,4 +1,4 @@
-package com.kma.kbooks.domain.data.model
+package com.kma.kbooks.domain.data.model.story
 
 data class Story(
     val storyId: String?,

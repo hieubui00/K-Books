@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kma.kbooks.dashboard.injection.scope.DashboardScope
-import com.kma.kbooks.domain.data.model.Story
+import com.kma.kbooks.domain.data.model.story.Story
 import com.kma.kbooks.domain.data.repository.StoryRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob

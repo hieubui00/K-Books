@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.kma.kbooks.dashboard.R
-import com.kma.kbooks.domain.data.model.Story
+import com.kma.kbooks.domain.data.model.story.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import kotlinx.coroutines.Dispatchers
 
