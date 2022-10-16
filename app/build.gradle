@@ -24,6 +24,7 @@ android {
             versionName '1.0.0'
 
             resValue 'string', 'app_name', 'K-Books Develop'
+            buildConfigField "String", "API_HOST", String.format("\"%s\"", API_HOST_DEVELOP)
             dimension 'default'
         }
 
@@ -67,6 +68,16 @@ dependencies {
         libs.navigationDynamicFeatures,
         libs.dagger
     )
+
+    implementation(
+        libs.okHTTP,
+        libs.retrofit,
+        libs.converterGSON
+    )
+
+    implementation(libs.loggingInterceptor) {
+        exclude group: 'org.json', module: 'json'
+    }
 
     kapt(kaptLibs.daggerCompiler)
 }
