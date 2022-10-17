@@ -29,6 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.kma.kbooks.domain.data.model.Genre
 import com.kma.kbooks.domain.data.model.StoryDetails
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
@@ -49,9 +50,11 @@ class StoryDetailsFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val mainComponent = (activity as? MainActivity)?.component
+        val args by navArgs<StoryDetailsFragmentArgs>()
 
         DaggerStoryDetailsComponent.builder()
             .mainComponent(mainComponent)
+            .savedStateHandle(args.toSavedStateHandle())
             .build()
             .inject(this)
     }

@@ -153,10 +153,17 @@ class HomeFragment : Fragment() {
                     StoryCard(
                         modifier = Modifier.width(width = 160.dp),
                         story = story,
-                        onClick = { }
+                        onClick = { navigateToStoryDetails(story.storyId ?: -1) }
                     )
                 }
             }
         }
+    }
+
+    private fun navigateToStoryDetails(storyId: Int) {
+        val navHostFragment = parentFragment as? NavHostFragment
+        val dashboardFragment = navHostFragment?.parentFragment as? DashboardFragment
+
+        dashboardFragment?.navigateToStoryDetails(storyId)
     }
 }

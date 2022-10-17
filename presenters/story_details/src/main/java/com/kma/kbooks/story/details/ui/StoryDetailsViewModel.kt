@@ -2,6 +2,7 @@ package com.kma.kbooks.story.details.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kma.kbooks.domain.data.model.StoryDetails
@@ -13,6 +14,8 @@ import javax.inject.Inject
 
 @StoryDetailsScope
 class StoryDetailsViewModel @Inject constructor(
+    state: SavedStateHandle,
+
     private val storyRepository: StoryRepository
 ) : ViewModel() {
     private val _storyDetails = MutableLiveData<StoryDetails?>()
@@ -21,7 +24,9 @@ class StoryDetailsViewModel @Inject constructor(
         get() = _storyDetails
 
     init {
-        getStoryDetails(storyId = 3)
+        val storyId = state.get<Int>("storyId") ?: -1
+
+        getStoryDetails(storyId = storyId)
     }
 
     private fun getStoryDetails(storyId: Int): Job = viewModelScope.launch {

@@ -3,7 +3,7 @@ package com.kma.kbooks.domain.data.model
 import java.util.Date
 
 data class Story(
-    val storyId: String?,
+    val storyId: Int?,
 
     val title: String?,
 

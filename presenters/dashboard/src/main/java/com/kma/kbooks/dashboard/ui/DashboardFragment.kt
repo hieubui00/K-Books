@@ -2,6 +2,7 @@ package com.kma.kbooks.dashboard.ui
 
 import android.content.Context
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.kma.kbooks.dashboard.R
 import com.kma.kbooks.dashboard.injection.component.DaggerDashboardComponent
 import com.kma.kbooks.dashboard.injection.component.DashboardComponent
@@ -18,5 +19,11 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         component = DaggerDashboardComponent.builder()
             .mainComponent(mainComponent)
             .build()
+    }
+
+    internal fun navigateToStoryDetails(storyId: Int) {
+         val action = DashboardFragmentDirections.navigateToStoryDetails(storyId)
+
+        findNavController().navigate(action)
     }
 }

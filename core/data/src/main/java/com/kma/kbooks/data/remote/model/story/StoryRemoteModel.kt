@@ -3,7 +3,7 @@ package com.kma.kbooks.data.remote.model.story
 import com.kma.kbooks.domain.data.model.Story
 
 class StoryRemoteModel {
-    val storyId: String? = null
+    val storyId: Int? = null
 
     val title: String? = null
 
