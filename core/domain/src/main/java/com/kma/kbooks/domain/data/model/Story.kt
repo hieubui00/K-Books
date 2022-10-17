@@ -33,3 +33,7 @@ data class StoryDetails(
 
     val publishedAt: Date?
 )
+
+enum class Status {
+    IMCOMING, COMPLETED
+}

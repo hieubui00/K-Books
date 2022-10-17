@@ -8,7 +8,6 @@ import com.kma.kbooks.domain.data.model.StoryDetails
 import com.kma.kbooks.domain.data.repository.StoryRepository
 import com.kma.kbooks.story.details.injection.scope.StoryDetailsScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
