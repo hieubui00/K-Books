@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,8 +22,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
@@ -39,7 +35,6 @@ import androidx.navigation.fragment.NavHostFragment
 import com.kma.kbooks.dashboard.R
 import com.kma.kbooks.dashboard.ui.DashboardFragment
 import com.kma.kbooks.dashboard.ui.home.component.ActionBar
-import com.kma.kbooks.dashboard.ui.home.component.MoreButton
 import com.kma.kbooks.dashboard.ui.home.component.StoryCard
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
@@ -87,22 +82,22 @@ class HomeFragment : Fragment() {
                     .background(color = MaterialTheme.colors.surface)
                     .verticalScroll(scrollState)
             ) {
-                val hotStories by viewModel.hotStories.observeAsState()
-                val newUpdatedStories by viewModel.newUpdatedStories.observeAsState()
+                val trendingStories by viewModel.trendingStories.observeAsState()
+                val recommendedStories by viewModel.recommendedStories.observeAsState()
                 val completedStories by viewModel.completedStories.observeAsState()
 
-                hotStories?.let { stories ->
+                trendingStories?.let { stories ->
                     StoriesSection(
                         modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
-                        label = stringResource(R.string.label_hot),
+                        label = stringResource(R.string.label_trending_now),
                         stories = stories
                     )
                 }
 
-                newUpdatedStories?.let { stories ->
+                recommendedStories?.let { stories ->
                     StoriesSection(
                         modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
-                        label = stringResource(R.string.label_new_updated),
+                        label = stringResource(R.string.label_recommended),
                         stories = stories
                     )
                 }
@@ -129,7 +124,7 @@ class HomeFragment : Fragment() {
                 modifier = Modifier.padding(start = 16.dp),
                 text = label.orEmpty(),
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.h6
+                style = MaterialTheme.typography.h5
             )
 
             if (stories.isEmpty()) {
@@ -143,32 +138,23 @@ class HomeFragment : Fragment() {
                         .align(alignment = CenterHorizontally),
                     text = stringResource(R.string.message_no_stories_found),
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.caption
+                    style = MaterialTheme.typography.body1
                 )
                 return@Column
             }
 
             LazyRow(
-                modifier = Modifier.padding(top = 8.dp),
+                modifier = Modifier
+                    .padding(top = 8.dp),
                 contentPadding = PaddingValues(horizontal = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(space = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
+                horizontalArrangement = Arrangement.spacedBy(space = 16.dp)
             ) {
                 items(items = stories) { story ->
                     StoryCard(
-                        modifier = Modifier
-                            .clickable(
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = null,
-                                onClick = { }
-                            )
-                            .width(width = 128.dp),
-                        story = story
+                        modifier = Modifier.width(width = 160.dp),
+                        story = story,
+                        onClick = { }
                     )
-                }
-
-                item {
-                    MoreButton(onClick = { })
                 }
             }
         }

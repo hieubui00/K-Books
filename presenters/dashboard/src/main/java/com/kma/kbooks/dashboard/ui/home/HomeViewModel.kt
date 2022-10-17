@@ -19,17 +19,17 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val storyRepository: StoryRepository
 ) : ViewModel() {
-    private val _hotStories = MutableLiveData<List<Story>>()
+    private val _trendingStories = MutableLiveData<List<Story>>()
 
-    private val _newUpdatedStories = MutableLiveData<List<Story>>()
+    private val _recommendedStories = MutableLiveData<List<Story>>()
 
     private val _completedStories = MutableLiveData<List<Story>>()
 
-    val hotStories: LiveData<List<Story>>
-        get() = _hotStories
+    val trendingStories: LiveData<List<Story>>
+        get() = _trendingStories
 
-    val newUpdatedStories: LiveData<List<Story>>
-        get() = _newUpdatedStories
+    val recommendedStories: LiveData<List<Story>>
+        get() = _recommendedStories
 
     val completedStories: LiveData<List<Story>>
         get() = _completedStories
@@ -45,15 +45,15 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun getTrendingStories() {
-        val hotStories = storyRepository.getStories(sort = SortBy.VIEW to SortOrder.DESC)
+        val trendingStories = storyRepository.getStories(sort = SortBy.VIEW to SortOrder.DESC)
 
-        _hotStories.postValue(hotStories)
+        _trendingStories.postValue(trendingStories)
     }
 
     private suspend fun getRecommendedStories() {
-        val newUpdatedStories = storyRepository.getStories(sort = SortBy.RATING to SortOrder.DESC)
+        val recommendedStories = storyRepository.getStories(sort = SortBy.RATING to SortOrder.DESC)
 
-        _newUpdatedStories.postValue(newUpdatedStories)
+        _recommendedStories.postValue(recommendedStories)
     }
 
     private suspend fun getCompletedStories() {
