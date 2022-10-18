@@ -6,7 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -35,7 +48,12 @@ import com.kma.kbooks.domain.data.model.StoryDetails
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.story.details.R
 import com.kma.kbooks.story.details.injection.component.DaggerStoryDetailsComponent
-import com.kma.kbooks.story.details.ui.component.*
+import com.kma.kbooks.story.details.ui.component.BackButton
+import com.kma.kbooks.story.details.ui.component.Backdrop
+import com.kma.kbooks.story.details.ui.component.GenreChip
+import com.kma.kbooks.story.details.ui.component.MetadataColumn
+import com.kma.kbooks.story.details.ui.component.ReadStoryButton
+import com.kma.kbooks.story.details.ui.component.Thumbnail
 import com.kma.kbooks.story.details.util.toString
 import com.kma.kbooks.ui.main.MainActivity
 import com.kma.kbooks.util.ViewModelFactory
@@ -79,7 +97,6 @@ class StoryDetailsFragment : Fragment() {
             Box(modifier = Modifier.fillMaxSize()) {
                 BackButton(
                     modifier = Modifier
-                        .statusBarsPadding()
                         .padding(vertical = 16.dp)
                         .padding(start = 16.dp),
                     onClick = this@StoryDetailsFragment::onBackPressed
@@ -126,7 +143,6 @@ class StoryDetailsFragment : Fragment() {
 
                 BackButton(
                     modifier = Modifier
-                        .statusBarsPadding()
                         .padding(vertical = 16.dp)
                         .padding(start = 16.dp),
                     onClick = this@StoryDetailsFragment::onBackPressed,

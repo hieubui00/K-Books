@@ -13,7 +13,7 @@ class StoryRemoteModel {
 }
 
 internal fun StoryRemoteModel.asEntity(): Story = Story(
-    storyId = this.storyId,
+    storyId = this.storyId ?: -1,
     title = this.title,
     author = this.author,
     thumbnail = this.thumbnail

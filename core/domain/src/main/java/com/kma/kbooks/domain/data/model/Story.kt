@@ -3,7 +3,7 @@ package com.kma.kbooks.domain.data.model
 import java.util.Date
 
 data class Story(
-    val storyId: Int?,
+    val storyId: Int = -1,
 
     val title: String?,
 
@@ -13,7 +13,7 @@ data class Story(
 )
 
 data class StoryDetails(
-    val storyId: Int?,
+    val storyId: Int = -1,
 
     val title: String?,
 

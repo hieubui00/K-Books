@@ -2,7 +2,7 @@
 <resources>
     <string name="title_home">Home</string>
     <string name="label_trending_now">Trending Now</string>
-    <string name="label_recommended">Recommended</string>
+    <string name="label_recommend">Recommend</string>
     <string name="label_completed">Completed</string>
     <string name="thumbnail">Thumbnail</string>
     <string name="more">More</string>

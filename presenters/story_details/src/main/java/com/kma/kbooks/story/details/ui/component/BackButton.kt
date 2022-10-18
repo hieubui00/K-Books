@@ -1,6 +1,5 @@
 package com.kma.kbooks.story.details.ui.component
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Icon
@@ -22,8 +21,7 @@ internal fun BackButton(
     IconButton(
         modifier = Modifier
             .statusBarsPadding()
-            .padding(vertical = 16.dp)
-            .padding(start = 16.dp)
+            .then(modifier)
             .size(size = 24.dp),
         onClick = onClick
     ) {
