@@ -15,10 +15,9 @@ import androidx.compose.ui.unit.dp
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 
 @Composable
-internal fun MetadataColumn(
+internal fun Metadata(
     modifier: Modifier = Modifier,
-    key: String?,
-    value: String?
+    metadata: Pair<String?, String?>
 ) {
     Column(
         modifier = modifier,
@@ -28,14 +27,14 @@ internal fun MetadataColumn(
         Text(
             fontStyle = FontStyle.Italic,
             textAlign = TextAlign.Center,
-            text = key.orEmpty(),
+            text = metadata.first.orEmpty(),
             style = MaterialTheme.typography.caption
         )
 
         Text(
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
-            text = value.orEmpty(),
+            text = metadata.second.orEmpty(),
             style = MaterialTheme.typography.caption
         )
     }
@@ -45,9 +44,6 @@ internal fun MetadataColumn(
 @Composable
 private fun MetadataColumnPreview() {
     KBooksTheme {
-        MetadataColumn(
-            key = "Rating",
-            value = "8/10"
-        )
+        Metadata(metadata = "Rating" to "8.0/10")
     }
 }

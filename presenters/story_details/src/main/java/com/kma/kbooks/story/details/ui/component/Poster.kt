@@ -9,7 +9,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun Thumbnail(
+internal fun Poster(
     modifier: Modifier = Modifier,
     data: String?
 ) {

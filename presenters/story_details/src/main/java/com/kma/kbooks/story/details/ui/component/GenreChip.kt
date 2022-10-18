@@ -15,17 +15,17 @@ import com.kma.kbooks.resources.ui.theme.KBooksTheme
 @Composable
 internal fun GenreChip(
     modifier: Modifier = Modifier,
-    genre: Genre?,
-    onClick: () -> Unit
+    genre: Genre,
+    onClick: (Genre) -> Unit
 ) {
     Chip(
         modifier = modifier,
         colors = ChipDefaults.chipColors(backgroundColor = MaterialTheme.colors.primary),
-        onClick = onClick
+        onClick = { onClick(genre) }
     ) {
         Text(
             color = MaterialTheme.colors.onPrimary,
-            text = genre?.name.orEmpty(),
+            text = genre.name.orEmpty(),
             style = MaterialTheme.typography.caption
         )
     }
