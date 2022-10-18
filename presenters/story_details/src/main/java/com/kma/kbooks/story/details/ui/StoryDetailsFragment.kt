@@ -159,7 +159,7 @@ class StoryDetailsFragment : Fragment() {
                 )
             }
 
-            Text(   // Title
+            Text( // Title
                 modifier = Modifier
                     .padding(top = 16.dp)
                     .padding(horizontal = 16.dp)
@@ -170,7 +170,7 @@ class StoryDetailsFragment : Fragment() {
                 style = MaterialTheme.typography.h4
             )
 
-            Text(   // Author
+            Text( // Author
                 modifier = Modifier
                     .padding(top = 4.dp)
                     .padding(horizontal = 16.dp)

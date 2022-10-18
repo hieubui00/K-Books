@@ -1,8 +1,8 @@
 package com.kma.kbooks.injection.module
 
-import com.kma.kbooks.BuildConfig
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
+import com.kma.kbooks.BuildConfig
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
