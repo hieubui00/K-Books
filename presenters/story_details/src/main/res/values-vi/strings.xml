@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary">Tóm tắt</string>
+    <string name="publish_date">Ngày xuất bản</string>
+    <string name="rating">Đánh giá</string>
+    <string name="view">Lượt xem</string>
+    <string name="status">Trạng thái</string>
+    <string name="read_story">Đọc truyện</string>
+</resources>

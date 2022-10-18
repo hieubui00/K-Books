@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kma.kbooks.dashboard.injection.scope.DashboardScope
+import com.kma.kbooks.domain.data.model.Status
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.domain.data.repository.StoryRepository
+import com.kma.kbooks.domain.util.SortBy
+import com.kma.kbooks.domain.util.SortOrder
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
@@ -16,17 +19,17 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val storyRepository: StoryRepository
 ) : ViewModel() {
-    private val _hotStories = MutableLiveData<List<Story>>()
+    private val _trendingStories = MutableLiveData<List<Story>>()
 
-    private val _newUpdatedStories = MutableLiveData<List<Story>>()
+    private val _recommendedStories = MutableLiveData<List<Story>>()
 
     private val _completedStories = MutableLiveData<List<Story>>()
 
-    val hotStories: LiveData<List<Story>>
-        get() = _hotStories
+    val trendingStories: LiveData<List<Story>>
+        get() = _trendingStories
 
-    val newUpdatedStories: LiveData<List<Story>>
-        get() = _newUpdatedStories
+    val recommendedStories: LiveData<List<Story>>
+        get() = _recommendedStories
 
     val completedStories: LiveData<List<Story>>
         get() = _completedStories
@@ -36,25 +39,25 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getData(): Job = viewModelScope.launch(context = SupervisorJob()) {
-        launch { getHotStories() }
-        launch { getNewUpdatedStories() }
+        launch { getTrendingStories() }
+        launch { getRecommendedStories() }
         launch { getCompletedStories() }
     }
 
-    private suspend fun getHotStories() {
-        val hotStories = storyRepository.getHotStories()
+    private suspend fun getTrendingStories() {
+        val trendingStories = storyRepository.getStories(sort = SortBy.VIEW to SortOrder.DESC)
 
-        _hotStories.postValue(hotStories)
+        _trendingStories.postValue(trendingStories)
     }
 
-    private suspend fun getNewUpdatedStories() {
-        val newUpdatedStories = storyRepository.getNewUpdatedStories()
+    private suspend fun getRecommendedStories() {
+        val recommendedStories = storyRepository.getStories(sort = SortBy.RATING to SortOrder.DESC)
 
-        _newUpdatedStories.postValue(newUpdatedStories)
+        _recommendedStories.postValue(recommendedStories)
     }
 
     private suspend fun getCompletedStories() {
-        val completedStories = storyRepository.getCompletedStories()
+        val completedStories = storyRepository.getStories(Status.COMPLETED)
 
         _completedStories.postValue(completedStories)
     }

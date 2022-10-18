@@ -8,6 +8,30 @@
         android:id="@+id/fragment_dashboard"
         android:name="com.kma.kbooks.dashboard.ui.DashboardFragment"
         android:label="@string/title_dashboard"
-        app:moduleName="dashboard" />
+        app:moduleName="dashboard">
+
+        <action
+            android:id="@+id/navigate_to_story_details"
+            app:destination="@id/fragment_story_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpToSaveState="true"
+            app:restoreState="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_story_details"
+        android:name="com.kma.kbooks.story.details.ui.StoryDetailsFragment"
+        android:label="@string/title_story_details"
+        app:moduleName="story_details">
+
+        <argument
+            android:name="storyId"
+            app:argType="integer" />
+
+    </fragment>
 
 </navigation>

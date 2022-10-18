@@ -1,11 +1,9 @@
-package com.kma.kbooks.data.remote.model
+package com.kma.kbooks.data.remote.model.story
 
-import com.google.firebase.firestore.DocumentId
 import com.kma.kbooks.domain.data.model.Story
 
 class StoryRemoteModel {
-    @DocumentId
-    val storyId: String? = null
+    val storyId: Int? = null
 
     val title: String? = null
 
@@ -15,7 +13,7 @@ class StoryRemoteModel {
 }
 
 internal fun StoryRemoteModel.asEntity(): Story = Story(
-    storyId = this.storyId,
+    storyId = this.storyId ?: -1,
     title = this.title,
     author = this.author,
     thumbnail = this.thumbnail

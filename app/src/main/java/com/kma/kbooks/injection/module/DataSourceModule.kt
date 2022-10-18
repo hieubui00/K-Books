@@ -5,7 +5,12 @@ import com.kma.kbooks.data.source.StoryRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [DispatcherModule::class])
+@Module(
+    includes = [
+        NetworkModule::class,
+        DispatcherModule::class
+    ]
+)
 abstract class DataSourceModule {
 
     @Binds

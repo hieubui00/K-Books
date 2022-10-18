@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary">Summary</string>
+    <string name="publish_date">Publish Date</string>
+    <string name="rating">Rating</string>
+    <string name="view">View</string>
+    <string name="status">Status</string>
+    <string name="read_story">Read story</string>
+</resources>
