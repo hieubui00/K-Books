@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -18,14 +19,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.kma.kbooks.R
+import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.component.ActionBar
 import com.kma.kbooks.resources.ui.component.StoryCard
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.stories.injection.component.DaggerStoriesComponent
-import com.kma.kbooks.story.details.ui.StoryDetailsFragmentArgs
+import com.kma.kbooks.stories.ui.component.LoadingContent
 import com.kma.kbooks.ui.main.MainActivity
 import com.kma.kbooks.util.ViewModelFactory
 import javax.inject.Inject
@@ -73,6 +77,11 @@ class StoriesFragment : Fragment() {
         ) {
             val stories = viewModel.stories.collectAsLazyPagingItems()
 
+            if (stories.loadState.refresh is LoadState.Loading) {
+                LoadingContent()
+                return@Scaffold
+            }
+
             LazyVerticalGrid(
                 modifier = Modifier
                     .padding(it)
@@ -88,11 +97,23 @@ class StoriesFragment : Fragment() {
                             title = story.title,
                             author = story.author,
                             thumbnail = story.thumbnail,
-                            onClick = { }
+                            onClick = { navigateToStoryDetails(story) }
                         )
+                    }
+                }
+
+                if (stories.loadState.append is LoadState.Loading) {
+                    item(span = { GridItemSpan(currentLineSpan = Int.MAX_VALUE) }) {
+                        LoadingContent(modifier = Modifier.padding(vertical = 8.dp))
                     }
                 }
             }
         }
+    }
+
+    private fun navigateToStoryDetails(story: Story) {
+        val action = StoriesFragmentDirections.navigateToStoryDetails(story.storyId)
+
+        findNavController().navigate(action)
     }
 }
