@@ -49,6 +49,7 @@ ext {
         fragment                 : "androidx.fragment:fragment-ktx:${versions.fragment}",
 
         lifecycleRuntime         : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}",
+        lifecycleLiveData        : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}",
 
         navigationFragment       : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
         navigationUI             : "androidx.navigation:navigation-ui-ktx:${versions.navigation}",

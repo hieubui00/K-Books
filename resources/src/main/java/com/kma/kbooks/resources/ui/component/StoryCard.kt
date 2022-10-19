@@ -1,4 +1,4 @@
-package com.kma.kbooks.dashboard.ui.home.component
+package com.kma.kbooks.resources.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,28 +16,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.kma.kbooks.dashboard.R
-import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import kotlinx.coroutines.Dispatchers
 
 @Composable
-internal fun StoryCard(
+fun StoryCard(
     modifier: Modifier = Modifier,
-    story: Story,
+    title: String?,
+    author: String?,
+    thumbnail: String?,
     onClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val context = LocalContext.current
     val model = ImageRequest.Builder(context)
-        .data(story.thumbnail)
+        .data(thumbnail)
         .dispatcher(Dispatchers.IO)
         .crossfade(durationMillis = 400)
         .build()
@@ -59,11 +58,11 @@ internal fun StoryCard(
                 .aspectRatio(ratio = 3f / 4f),
             model = model,
             contentScale = ContentScale.FillBounds,
-            contentDescription = stringResource(R.string.thumbnail)
+            contentDescription = null
         )
 
         Text( // Title
-            text = story.title.orEmpty(),
+            text = title.orEmpty(),
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
             maxLines = 2,
@@ -71,7 +70,7 @@ internal fun StoryCard(
         )
 
         Text( // Author
-            text = story.author.orEmpty(),
+            text = author.orEmpty(),
             color = Color(0xFF888E96),
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
@@ -87,12 +86,9 @@ private fun StoryCardPreview() {
     KBooksTheme {
         StoryCard(
             modifier = Modifier.background(color = Color.White),
-            story = Story(
-                storyId = 1,
-                title = "Tôi thấy hoa vàng trên cỏ xanh",
-                author = "Nguyễn Nhật Ánh",
-                thumbnail = null
-            ),
+            title = "Tôi thấy hoa vàng trên cỏ xanh",
+            author = "Nguyễn Nhật Ánh",
+            thumbnail = null,
             onClick = {}
         )
     }

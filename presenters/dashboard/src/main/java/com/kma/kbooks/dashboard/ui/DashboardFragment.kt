@@ -21,7 +21,10 @@ import com.kma.kbooks.dashboard.ui.component.BottomNavigation
 import com.kma.kbooks.dashboard.ui.home.HomeScreen
 import com.kma.kbooks.dashboard.ui.home.HomeViewModel
 import com.kma.kbooks.dashboard.util.Destination
+import com.kma.kbooks.domain.data.model.Status
 import com.kma.kbooks.domain.data.model.Story
+import com.kma.kbooks.domain.util.SortBy
+import com.kma.kbooks.domain.util.SortOrder
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.ui.main.MainActivity
 import com.kma.kbooks.util.ViewModelFactory
@@ -84,11 +87,25 @@ class DashboardFragment : Fragment() {
                 composable(Destination.HOME.route) {
                     HomeScreen(
                         viewModel = viewModel(factory = factory),
+                        onNavigateToStories = this@DashboardFragment::navigateToStories,
                         onNavigateToStoryDetails = this@DashboardFragment::navigateToStoryDetails
                     )
                 }
             }
         }
+    }
+
+    private fun navigateToStories(
+        status: Status? = null,
+        sort: Pair<SortBy, SortOrder>? = null
+    ) {
+        val action = DashboardFragmentDirections.navigateToStories(
+            status = status?.name,
+            sortBy = sort?.first ?: SortBy.VIEW,
+            sortOrder = sort?.second ?: SortOrder.DESC
+        )
+
+        findNavController().navigate(action)
     }
 
     private fun navigateToStoryDetails(story: Story) {

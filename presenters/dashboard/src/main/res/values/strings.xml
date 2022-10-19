@@ -4,7 +4,7 @@
     <string name="label_trending_now">Trending Now</string>
     <string name="label_recommend">Recommend</string>
     <string name="label_completed">Completed</string>
+    <string name="see_more">See more</string>
     <string name="thumbnail">Thumbnail</string>
-    <string name="more">More</string>
     <string name="message_no_stories_found">No stories found!</string>
 </resources>
