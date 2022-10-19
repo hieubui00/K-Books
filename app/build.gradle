@@ -68,6 +68,8 @@ dependencies {
         libs.navigationFragment,
         libs.navigationUI,
         libs.navigationDynamicFeatures,
+        libs.paging,
+        libs.pagingCompose,
         libs.dagger
     )
 

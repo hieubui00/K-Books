@@ -1,5 +1,6 @@
 package com.kma.kbooks.stories.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +17,36 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.kma.kbooks.R
 import com.kma.kbooks.resources.ui.component.ActionBar
 import com.kma.kbooks.resources.ui.component.StoryCard
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
+import com.kma.kbooks.stories.injection.component.DaggerStoriesComponent
+import com.kma.kbooks.story.details.ui.StoryDetailsFragmentArgs
+import com.kma.kbooks.ui.main.MainActivity
+import com.kma.kbooks.util.ViewModelFactory
+import javax.inject.Inject
 
 class StoriesFragment : Fragment() {
+    private val viewModel by viewModels<StoriesViewModel> { factory }
+
+    @Inject
+    lateinit var factory: ViewModelFactory<StoriesViewModel>
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val mainComponent = (activity as? MainActivity)?.component
+        val args by navArgs<StoriesFragmentArgs>()
+
+        DaggerStoriesComponent.builder()
+            .mainComponent(mainComponent)
+            .savedStateHandle(args.toSavedStateHandle())
+            .build()
+            .inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +71,8 @@ class StoriesFragment : Fragment() {
                 )
             },
         ) {
+            val stories = viewModel.stories.collectAsLazyPagingItems()
+
             LazyVerticalGrid(
                 modifier = Modifier
                     .padding(it)
@@ -55,13 +82,15 @@ class StoriesFragment : Fragment() {
                 verticalArrangement = Arrangement.spacedBy(space = 12.dp),
                 contentPadding = PaddingValues(vertical = 16.dp)
             ) {
-                items(count = 20) { index ->
-                    StoryCard(
-                        title = "Tôi thấy hoa vàng trên cỏ xanh",
-                        author = "Nguyễn Nhật Ánh",
-                        thumbnail = "https://upload.wikimedia.org/wikipedia/vi/thumb/f/f8/Toithayhoavangtrencoxanh.jpg/280px-Toithayhoavangtrencoxanh.jpg",
-                        onClick = { }
-                    )
+                items(count = stories.itemCount) { index ->
+                    stories[index]?.let { story ->
+                        StoryCard(
+                            title = story.title,
+                            author = story.author,
+                            thumbnail = story.thumbnail,
+                            onClick = { }
+                        )
+                    }
                 }
             }
         }

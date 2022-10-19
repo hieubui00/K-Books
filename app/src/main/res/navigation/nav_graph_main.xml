@@ -46,6 +46,22 @@
         android:label="@string/title_stories"
         app:moduleName="stories">
 
+        <argument
+            android:name="status"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="sortBy"
+            android:defaultValue="VIEW"
+            app:argType="com.kma.kbooks.domain.util.SortBy" />
+
+        <argument
+            android:name="sortOrder"
+            android:defaultValue="DESC"
+            app:argType="com.kma.kbooks.domain.util.SortOrder" />
+
         <action
             android:id="@+id/navigate_to_story_details"
             app:destination="@id/fragment_story_details"

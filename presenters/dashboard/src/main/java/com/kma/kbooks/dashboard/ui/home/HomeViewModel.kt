@@ -57,7 +57,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun getCompletedStories() {
-        val completedStories = storyRepository.getStories(Status.COMPLETED)
+        val completedStories = storyRepository.getStories(Status.COMPLETED, sort = SortBy.VIEW to SortOrder.DESC)
 
         _completedStories.postValue(completedStories)
     }
