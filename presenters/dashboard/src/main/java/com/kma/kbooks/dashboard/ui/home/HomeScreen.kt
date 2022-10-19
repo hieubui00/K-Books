@@ -14,14 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kma.kbooks.dashboard.R.string
-import com.kma.kbooks.dashboard.ui.home.component.ActionBar
 import com.kma.kbooks.dashboard.ui.home.component.StorySection
 import com.kma.kbooks.domain.data.model.Story
+import com.kma.kbooks.resources.ui.component.ActionBar
 
 @Composable
 internal fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel,
+    onNavigateToStories: () -> Unit,
     onNavigateToStoryDetails: (Story) -> Unit
 ) {
     Scaffold(
@@ -45,6 +46,7 @@ internal fun HomeScreen(
                 StorySection(
                     label = it.first,
                     stories = it.second.value ?: emptyList(),
+                    onSeeMoreClick = onNavigateToStories,
                     onItemClick = onNavigateToStoryDetails
                 )
             }
