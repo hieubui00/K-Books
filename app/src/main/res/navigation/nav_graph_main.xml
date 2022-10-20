@@ -29,18 +29,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragment_story_details"
-        android:name="com.kma.kbooks.story.details.ui.StoryDetailsFragment"
-        android:label="@string/title_story_details"
-        app:moduleName="story_details">
-
-        <argument
-            android:name="storyId"
-            app:argType="integer" />
-
-    </fragment>
-
-    <fragment
         android:id="@+id/fragment_stories"
         android:name="com.kma.kbooks.stories.ui.StoriesFragment"
         android:label="@string/title_stories"
@@ -69,6 +57,38 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_story_details"
+        android:name="com.kma.kbooks.story.details.ui.StoryDetailsFragment"
+        android:label="@string/title_story_details"
+        app:moduleName="story_details">
+
+        <argument
+            android:name="storyId"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/navigate_to_chapters"
+            app:destination="@id/fragment_chapters"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_chapters"
+        android:name="com.kma.kbooks.chapters.ui.ChaptersFragment"
+        android:label="@string/title_chapters"
+        app:moduleName="chapters" >
+
+        <argument
+            android:name="storyId"
+            app:argType="integer" />
 
     </fragment>
 

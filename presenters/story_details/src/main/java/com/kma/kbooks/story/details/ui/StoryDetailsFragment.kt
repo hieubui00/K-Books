@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.story.details.R
@@ -134,7 +135,7 @@ class StoryDetailsFragment : Fragment() {
                     .padding(top = 24.dp)
                     .padding(horizontal = 16.dp)
                     .height(height = 48.dp),
-                onClick = {}
+                onClick = this@StoryDetailsFragment::navigateToChapters
             )
 
             Text(
@@ -161,5 +162,11 @@ class StoryDetailsFragment : Fragment() {
 
     private fun onBackPressed() {
         activity?.onBackPressedDispatcher?.onBackPressed()
+    }
+
+    private fun navigateToChapters() {
+        val action = StoryDetailsFragmentDirections.navigateToChapters(viewModel.storyId)
+
+        findNavController().navigate(action)
     }
 }

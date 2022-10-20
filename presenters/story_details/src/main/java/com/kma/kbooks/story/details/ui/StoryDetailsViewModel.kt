@@ -23,8 +23,10 @@ class StoryDetailsViewModel @Inject constructor(
     val storyDetails: LiveData<StoryDetails?>
         get() = _storyDetails
 
+    val storyId: Int
+
     init {
-        val storyId = state.get<Int>("storyId") ?: -1
+        storyId = state.get<Int>("storyId") ?: -1
 
         getStoryDetails(storyId = storyId)
     }
