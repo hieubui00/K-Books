@@ -65,7 +65,7 @@ fun StoryCard(
             text = title.orEmpty(),
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
-            maxLines = 2,
+            maxLines = 1,
             style = MaterialTheme.typography.body1
         )
 
