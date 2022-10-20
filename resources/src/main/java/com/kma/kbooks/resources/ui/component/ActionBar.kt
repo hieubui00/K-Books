@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
@@ -50,9 +52,14 @@ fun ActionBar(
             }
 
             Text(
-                modifier = Modifier.align(alignment = Alignment.Center),
+                modifier = Modifier
+                    .padding(horizontal = 64.dp)
+                    .align(alignment = Alignment.Center),
                 text = title.orEmpty(),
                 fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                textAlign = TextAlign.Center,
+                overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.h5
             )
         }

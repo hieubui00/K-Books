@@ -54,7 +54,8 @@ android {
     dynamicFeatures = [
         ':presenters:dashboard',
         ':presenters:stories',
-        ':presenters:story_details'
+        ':presenters:story_details',
+        ':presenters:chapters'
     ]
 }
 
