@@ -1,7 +1,9 @@
 package com.kma.kbooks.data.repository
 
+import com.kma.kbooks.data.remote.model.chapter.asEntity
 import com.kma.kbooks.data.remote.model.story.asEntity
 import com.kma.kbooks.data.source.StoryRemoteDataSource
+import com.kma.kbooks.domain.data.model.Chapter
 import com.kma.kbooks.domain.data.model.Status
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.domain.data.model.StoryDetails
@@ -26,5 +28,9 @@ class StoryRepositoryImpl @Inject constructor(
 
     override suspend fun getStoryDetails(storyId: Int): StoryDetails? {
         return storyRemoteDataSource.getStoryDetails(storyId)?.asEntity()
+    }
+
+    override suspend fun getStoryChapters(storyId: Int, page: Int?): List<Chapter> {
+        return storyRemoteDataSource.getStoryChapters(storyId, page).map { it.asEntity() }
     }
 }

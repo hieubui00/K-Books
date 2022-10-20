@@ -1,5 +1,6 @@
 package com.kma.kbooks.data.source
 
+import com.kma.kbooks.data.remote.model.chapter.ChapterRemoteModel
 import com.kma.kbooks.data.remote.model.story.StoryDetailsRemoteModel
 import com.kma.kbooks.data.remote.model.story.StoryRemoteModel
 import com.kma.kbooks.data.remote.request.KBooksService
@@ -16,10 +17,15 @@ interface StoryRemoteDataSource {
     suspend fun getStories(
         vararg status: Status,
         sort: Pair<SortBy, SortOrder>? = null,
-        page: Int?
+        page: Int? = -1
     ): List<StoryRemoteModel>
 
     suspend fun getStoryDetails(storyId: Int): StoryDetailsRemoteModel?
+
+    suspend fun getStoryChapters(
+        storyId: Int,
+        page: Int? = -1
+    ): List<ChapterRemoteModel>
 }
 
 class StoryRemoteDataSourceImpl @Inject constructor(
@@ -48,5 +54,14 @@ class StoryRemoteDataSourceImpl @Inject constructor(
         val response = kBooksService.getStoryDetails(storyId)
 
         return@withContext response.data
+    }
+
+    override suspend fun getStoryChapters(
+        storyId: Int,
+        page: Int?
+    ): List<ChapterRemoteModel> = withContext(ioDispatcher) {
+        val response = kBooksService.getStoryChapters(storyId, page)
+
+        return@withContext response.data ?: emptyList()
     }
 }

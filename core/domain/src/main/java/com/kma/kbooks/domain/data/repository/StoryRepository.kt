@@ -1,5 +1,6 @@
 package com.kma.kbooks.domain.data.repository
 
+import com.kma.kbooks.domain.data.model.Chapter
 import com.kma.kbooks.domain.data.model.Status
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.domain.data.model.StoryDetails
@@ -15,4 +16,6 @@ interface StoryRepository {
     ): List<Story>
 
     suspend fun getStoryDetails(storyId: Int): StoryDetails?
+
+    suspend fun getStoryChapters(storyId: Int, page: Int? = 1): List<Chapter>
 }
