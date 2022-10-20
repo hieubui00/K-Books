@@ -55,7 +55,8 @@ android {
         ':presenters:dashboard',
         ':presenters:stories',
         ':presenters:story_details',
-        ':presenters:chapters'
+        ':presenters:chapters',
+        ':presenters:chapter_details'
     ]
 }
 
