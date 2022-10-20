@@ -8,7 +8,7 @@ data class Chapter(
     val chapterId: Int = -1,
 
     val name: String?
-): Parcelable
+) : Parcelable
 
 data class ChapterDetails(
     val chapterId: Int = -1,
