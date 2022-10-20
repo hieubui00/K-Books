@@ -1,5 +1,6 @@
 package com.kma.kbooks.chapters.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,13 +18,28 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.kma.kbooks.chapters.R
+import com.kma.kbooks.chapters.injection.component.DaggerChaptersComponent
 import com.kma.kbooks.chapters.ui.component.ChapterCard
 import com.kma.kbooks.domain.data.model.Chapter
 import com.kma.kbooks.resources.ui.component.ActionBar
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
+import com.kma.kbooks.ui.main.MainActivity
 
 class ChaptersFragment : Fragment() {
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val mainComponent = (activity as? MainActivity)?.component
+        val args by navArgs<ChaptersFragmentArgs>()
+
+        DaggerChaptersComponent.builder()
+            .mainComponent(mainComponent)
+            .savedStateHandle(args.toSavedStateHandle())
+            .build()
+            .inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
