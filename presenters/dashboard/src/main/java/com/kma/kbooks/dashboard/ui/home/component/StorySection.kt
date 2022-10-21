@@ -3,14 +3,17 @@ package com.kma.kbooks.dashboard.ui.home.component
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +33,7 @@ import com.kma.kbooks.resources.ui.component.StoryCard
 internal fun StorySection(
     modifier: Modifier = Modifier,
     label: String? = null,
-    stories: List<Story> = listOf(),
+    stories: List<Story>?,
     onSeeMoreClick: () -> Unit,
     onItemClick: (Story) -> Unit
 ) {
@@ -62,8 +65,25 @@ internal fun StorySection(
             )
         }
 
-        if (stories.isEmpty()) {
-            Text(
+        when {
+            stories == null -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 72.dp)
+                        .align(alignment = Alignment.CenterHorizontally)
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .align(alignment = Alignment.Center),
+                        color = MaterialTheme.colors.primary,
+                        strokeWidth = 4.dp
+                    )
+                }
+            }
+
+            stories.isEmpty() -> Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 72.dp)
@@ -72,22 +92,21 @@ internal fun StorySection(
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.body1
             )
-            return@Column
-        }
 
-        LazyRow(
-            modifier = Modifier.padding(top = 8.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(space = 16.dp)
-        ) {
-            items(items = stories) {
-                StoryCard(
-                    modifier = Modifier.width(width = 160.dp),
-                    title = it.title,
-                    author = it.author,
-                    thumbnail = it.thumbnail,
-                    onClick = { onItemClick(it) }
-                )
+            else -> LazyRow(
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(space = 16.dp)
+            ) {
+                items(items = stories) {
+                    StoryCard(
+                        modifier = Modifier.width(width = 160.dp),
+                        title = it.title,
+                        author = it.author,
+                        thumbnail = it.thumbnail,
+                        onClick = { onItemClick(it) }
+                    )
+                }
             }
         }
     }

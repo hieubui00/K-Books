@@ -46,7 +46,7 @@ internal fun HomeScreen(
             item {
                 StorySection(
                     label = stringResource(id = string.label_trending_now),
-                    stories = trendingStories ?: emptyList(),
+                    stories = trendingStories,
                     onSeeMoreClick = { onNavigateToStories(null, SortBy.VIEW to SortOrder.DESC) },
                     onItemClick = onNavigateToStoryDetails
                 )
@@ -55,7 +55,7 @@ internal fun HomeScreen(
             item {
                 StorySection(
                     label = stringResource(id = string.label_recommend),
-                    stories = recommendedStories ?: emptyList(),
+                    stories = recommendedStories,
                     onSeeMoreClick = { onNavigateToStories(null, SortBy.RATING to SortOrder.DESC) },
                     onItemClick = onNavigateToStoryDetails
                 )
@@ -64,7 +64,7 @@ internal fun HomeScreen(
             item {
                 StorySection(
                     label = stringResource(id = string.label_completed),
-                    stories = completedStories ?: emptyList(),
+                    stories = completedStories,
                     onSeeMoreClick = { onNavigateToStories(Status.COMPLETED, null) },
                     onItemClick = onNavigateToStoryDetails
                 )

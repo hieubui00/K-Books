@@ -29,6 +29,7 @@ import androidx.navigation.fragment.navArgs
 import com.kma.kbooks.chapter.details.injection.component.DaggerChapterDetailsComponent
 import com.kma.kbooks.chapter.details.ui.component.ActionBar
 import com.kma.kbooks.chapter.details.ui.component.ChapterContent
+import com.kma.kbooks.chapter.details.ui.component.LoadingContent
 import com.kma.kbooks.chapter.details.ui.component.SettingsBottomSheet
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.ui.main.MainActivity
@@ -92,6 +93,11 @@ class ChapterDetailsFragment : Fragment() {
             },
             content = {
                 val chapterDetails by viewModel.chapterDetails.observeAsState()
+
+                if (chapterDetails == null) {
+                    LoadingContent(modifier = Modifier.fillMaxSize())
+                    return@ModalBottomSheetLayout
+                }
 
                 Scaffold(
                     topBar = {
