@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -26,6 +27,7 @@ import com.kma.kbooks.chapters.R
 import com.kma.kbooks.chapters.injection.component.DaggerChaptersComponent
 import com.kma.kbooks.chapters.ui.component.ChapterCard
 import com.kma.kbooks.chapters.ui.component.LoadingContent
+import com.kma.kbooks.domain.data.model.Chapter
 import com.kma.kbooks.resources.ui.component.ActionBar
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.ui.main.MainActivity
@@ -91,7 +93,7 @@ class ChaptersFragment : Fragment() {
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp),
                         chapter = chapter!!,
-                        onClick = { }
+                        onClick = this@ChaptersFragment::navigateToChapterDetails
                     )
                 }
 
@@ -102,5 +104,11 @@ class ChaptersFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun navigateToChapterDetails(chapter: Chapter) {
+        val action = ChaptersFragmentDirections.navigateToChapterDetails(chapter)
+
+        findNavController().navigate(action)
     }
 }

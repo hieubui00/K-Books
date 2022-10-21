@@ -1,5 +1,6 @@
 package com.kma.kbooks.data.remote.request
 
+import com.kma.kbooks.data.remote.response.ChapterDetailsResponse
 import com.kma.kbooks.data.remote.response.StoriesResponse
 import com.kma.kbooks.data.remote.response.StoryChaptersResponse
 import com.kma.kbooks.data.remote.response.StoryDetailsResponse
@@ -24,4 +25,7 @@ interface KBooksService {
         @Path("storyId") storyId: Int,
         @Query("page") page: Int? = 1
     ): StoryChaptersResponse
+
+    @GET("/api/chapters/{chapterId}")
+    suspend fun getChapterDetails(@Path("chapterId") chapterId: Int): ChapterDetailsResponse
 }
