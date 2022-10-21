@@ -73,7 +73,7 @@ class ChapterDetailsFragment : Fragment() {
     private fun Content() {
         val sheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
         val coroutineScope = rememberCoroutineScope()
-        val fontSize = rememberSaveable { mutableStateOf(value = 16f) }
+        val fontSize = rememberSaveable { mutableStateOf(value = viewModel.fontSize) }
 
         ModalBottomSheetLayout(
             modifier = Modifier.fillMaxSize(),
@@ -87,7 +87,7 @@ class ChapterDetailsFragment : Fragment() {
                 SettingsBottomSheet(
                     fontSize = fontSize,
                     onClose = { coroutineScope.launch { sheetState.hide() } },
-                    onFontSizeChanged = {}
+                    onFontSizeChanged = { viewModel.updateFontSize(it) }
                 )
             },
             content = {

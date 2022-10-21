@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 internal fun SettingsBottomSheet(
     fontSize: MutableState<Float>,
     onClose: () -> Unit,
-    onFontSizeChanged: () -> Unit,
+    onFontSizeChanged: (Float) -> Unit,
 ) {
     Column(
         modifier = Modifier.padding(bottom = 8.dp),
@@ -64,7 +64,7 @@ internal fun SettingsBottomSheet(
             steps = 5,
             value = fontSize.value,
             onValueChange = { fontSize.value = it },
-            onValueChangeFinished = onFontSizeChanged
+            onValueChangeFinished = { onFontSizeChanged(fontSize.value) }
         )
     }
 }
