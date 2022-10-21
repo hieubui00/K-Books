@@ -26,10 +26,10 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.kma.kbooks.chapters.R
 import com.kma.kbooks.chapters.injection.component.DaggerChaptersComponent
+import com.kma.kbooks.chapters.ui.component.ActionBar
 import com.kma.kbooks.chapters.ui.component.ChapterCard
 import com.kma.kbooks.chapters.ui.component.LoadingContent
 import com.kma.kbooks.domain.data.model.Chapter
-import com.kma.kbooks.resources.ui.component.ActionBar
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.ui.main.MainActivity
 import com.kma.kbooks.util.ViewModelFactory
@@ -72,7 +72,7 @@ class ChaptersFragment : Fragment() {
             topBar = {
                 ActionBar(
                     title = stringResource(R.string.chapters),
-                    onBackPress = { activity?.onBackPressedDispatcher?.onBackPressed() }
+                    onNavigationClick = { activity?.onBackPressedDispatcher?.onBackPressed() }
                 )
             }
         ) {

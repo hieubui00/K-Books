@@ -14,12 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kma.kbooks.dashboard.R.string
+import com.kma.kbooks.dashboard.ui.home.component.ActionBar
 import com.kma.kbooks.dashboard.ui.home.component.StorySection
 import com.kma.kbooks.domain.data.model.Status
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.domain.util.SortBy
 import com.kma.kbooks.domain.util.SortOrder
-import com.kma.kbooks.resources.ui.component.ActionBar
 
 @Composable
 internal fun HomeScreen(
@@ -30,7 +30,13 @@ internal fun HomeScreen(
 ) {
     Scaffold(
         modifier = modifier,
-        topBar = { ActionBar(title = stringResource(id = string.title_home)) },
+        topBar = {
+            ActionBar(
+                title = stringResource(id = string.title_home),
+                onNavigationClick = {},
+                onSearchClick = {}
+            )
+        },
     ) { padding ->
         val trendingStories by viewModel.trendingStories.observeAsState()
         val recommendedStories by viewModel.recommendedStories.observeAsState()

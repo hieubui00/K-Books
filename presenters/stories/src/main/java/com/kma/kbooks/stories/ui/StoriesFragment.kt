@@ -25,10 +25,10 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.kma.kbooks.R
 import com.kma.kbooks.domain.data.model.Story
-import com.kma.kbooks.resources.ui.component.ActionBar
 import com.kma.kbooks.resources.ui.component.StoryCard
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.stories.injection.component.DaggerStoriesComponent
+import com.kma.kbooks.stories.ui.component.ActionBar
 import com.kma.kbooks.stories.ui.component.LoadingContent
 import com.kma.kbooks.ui.main.MainActivity
 import com.kma.kbooks.util.ViewModelFactory
@@ -71,7 +71,7 @@ class StoriesFragment : Fragment() {
             topBar = {
                 ActionBar(
                     title = stringResource(id = R.string.title_stories),
-                    onBackPress = { activity?.onBackPressedDispatcher?.onBackPressed() }
+                    onNavigationClick = { activity?.onBackPressedDispatcher?.onBackPressed() }
                 )
             },
         ) {
