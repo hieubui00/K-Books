@@ -25,6 +25,7 @@ import com.kma.kbooks.domain.util.SortOrder
 internal fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel,
+    onNavigateToSearch: () -> Unit,
     onNavigateToStories: (Status?, Pair<SortBy, SortOrder>?) -> Unit,
     onNavigateToStoryDetails: (Story) -> Unit
 ) {
@@ -34,7 +35,7 @@ internal fun HomeScreen(
             ActionBar(
                 title = stringResource(id = string.title_home),
                 onNavigationClick = {},
-                onSearchClick = {}
+                onSearchClick = onNavigateToSearch
             )
         },
     ) { padding ->
