@@ -40,7 +40,15 @@
         android:id="@+id/fragment_search"
         android:name="com.kma.kbooks.search.ui.SearchFragment"
         android:label="@string/title_search"
-        app:moduleName="search" />
+        app:moduleName="search" >
+        <action
+            android:id="@+id/navigate_to_story_details"
+            app:destination="@id/fragment_story_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_stories"

@@ -28,7 +28,7 @@ class SearchViewModel @Inject constructor(
         val pagingConfig = PagingConfig(pageSize = 16)
 
         stories = queryChannel
-            .consumeAsFlow()
+            .receiveAsFlow()
             .debounce(300)
             .filter { it.isNotBlank() }
             .distinctUntilChanged()
