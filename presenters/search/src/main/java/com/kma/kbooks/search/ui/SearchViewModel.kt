@@ -1,5 +1,6 @@
 package com.kma.kbooks.search.ui
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
@@ -10,7 +11,6 @@ import com.kma.kbooks.search.injection.scope.SearchScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,21 +20,21 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val storiesPagingSource: StoriesPagingSource
 ) : ViewModel() {
-    private val queryChannel = Channel<String>(capacity = Channel.CONFLATED)
+    private val _query = MutableLiveData<String>()
 
     val stories: Flow<PagingData<Story>>
 
     init {
-        val pagingConfig = PagingConfig(pageSize = 16)
-
-        stories = queryChannel
-            .receiveAsFlow()
+        stories = _query
+            .asFlow()
             .debounce(300)
             .filter { it.isNotBlank() }
+            .map { it.trim() }
             .distinctUntilChanged()
             .flatMapLatest {
-                storiesPagingSource.query = it
-                Pager(pagingConfig) { storiesPagingSource }
+                val pagingConfig = PagingConfig(pageSize = 16)
+
+                Pager(pagingConfig) { storiesPagingSource.apply { query = it } }
                     .liveData
                     .cachedIn(viewModelScope)
                     .asFlow()
@@ -42,6 +42,6 @@ class SearchViewModel @Inject constructor(
     }
 
     fun setQuery(query: String): Job = viewModelScope.launch {
-        queryChannel.send(query)
+        _query.postValue(query)
     }
 }
