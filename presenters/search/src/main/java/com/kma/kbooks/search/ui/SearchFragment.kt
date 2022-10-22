@@ -8,11 +8,19 @@ import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.kma.kbooks.resources.ui.theme.KBooksTheme
 import com.kma.kbooks.search.injection.component.DaggerSearchComponent
 import com.kma.kbooks.ui.main.MainActivity
+import com.kma.kbooks.util.ViewModelFactory
+import javax.inject.Inject
 
 class SearchFragment : Fragment() {
+    private val viewModel by viewModels<SearchViewModel> { factory }
+
+    @Inject
+    lateinit var factory: ViewModelFactory<SearchViewModel>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,6 +47,8 @@ class SearchFragment : Fragment() {
 
     @Composable
     private fun Content() {
+        val stories = viewModel.stories.collectAsLazyPagingItems()
+
         // TODO("Create UI components for Search screen")
     }
 }
