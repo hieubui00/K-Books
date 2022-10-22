@@ -10,6 +10,7 @@ import com.kma.kbooks.domain.util.SortOrder
 interface StoryRepository {
 
     suspend fun getStories(
+        query: String? = null,
         vararg status: Status,
         sort: Pair<SortBy, SortOrder>? = null,
         page: Int? = 1

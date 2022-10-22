@@ -17,11 +17,13 @@ class StoryRepositoryImpl @Inject constructor(
 ) : StoryRepository {
 
     override suspend fun getStories(
+        query: String?,
         vararg status: Status,
         sort: Pair<SortBy, SortOrder>?,
         page: Int?
     ): List<Story> = storyRemoteDataSource.getStories(
-        *status,
+        query = query,
+        status = status,
         sort = sort,
         page = page
     ).map { it.asEntity() }

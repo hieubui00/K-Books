@@ -12,6 +12,7 @@ interface KBooksService {
 
     @GET("/api/stories")
     suspend fun getStories(
+        @Query("q") query: String? = null,
         @Query("status") status: String? = null,
         @Query("sort") sort: String? = null,
         @Query("page") page: Int? = 1

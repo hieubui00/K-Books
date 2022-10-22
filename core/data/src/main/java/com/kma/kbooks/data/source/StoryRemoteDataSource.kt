@@ -15,6 +15,7 @@ import javax.inject.Named
 interface StoryRemoteDataSource {
 
     suspend fun getStories(
+        query: String? = null,
         vararg status: Status,
         sort: Pair<SortBy, SortOrder>? = null,
         page: Int? = -1
@@ -35,11 +36,13 @@ class StoryRemoteDataSourceImpl @Inject constructor(
 ) : StoryRemoteDataSource {
 
     override suspend fun getStories(
+        query: String?,
         vararg status: Status,
         sort: Pair<SortBy, SortOrder>?,
         page: Int?
     ): List<StoryRemoteModel> = withContext(ioDispatcher) {
         val response = kBooksService.getStories(
+            query = query,
             status = status.takeIf { it.isNotEmpty() }?.joinToString(",")?.lowercase(),
             sort = sort?.let { "${sort.first}.${sort.second}".lowercase() },
             page = page
