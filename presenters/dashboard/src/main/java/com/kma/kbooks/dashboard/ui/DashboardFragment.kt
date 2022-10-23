@@ -87,12 +87,19 @@ class DashboardFragment : Fragment() {
                 composable(Destination.HOME.route) {
                     HomeScreen(
                         viewModel = viewModel(factory = factory),
+                        onNavigateToSearch = this@DashboardFragment::navigateToSearch,
                         onNavigateToStories = this@DashboardFragment::navigateToStories,
                         onNavigateToStoryDetails = this@DashboardFragment::navigateToStoryDetails
                     )
                 }
             }
         }
+    }
+
+    private fun navigateToSearch() {
+        val action = DashboardFragmentDirections.navigateToSearch()
+
+        findNavController().navigate(action)
     }
 
     private fun navigateToStories(
