@@ -27,9 +27,16 @@ android {
 dependencies {
     implementation project(':core:domain')
 
-    implementation(libs.retrofit)
+    implementation(
+        libs.room,
+        libs.roomRuntime,
+        libs.retrofit
+    )
 
-    kapt(kaptLibs.daggerCompiler)
+    kapt(
+        kaptLibs.roomCompiler,
+        kaptLibs.daggerCompiler,
+    )
 
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
 }

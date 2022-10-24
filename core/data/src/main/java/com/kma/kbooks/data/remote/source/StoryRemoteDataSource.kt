@@ -1,4 +1,4 @@
-package com.kma.kbooks.data.source
+package com.kma.kbooks.data.remote.source
 
 import com.kma.kbooks.data.remote.model.chapter.ChapterRemoteModel
 import com.kma.kbooks.data.remote.model.story.StoryDetailsRemoteModel
@@ -9,6 +9,7 @@ import com.kma.kbooks.domain.util.SortBy
 import com.kma.kbooks.domain.util.SortOrder
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -18,14 +19,14 @@ interface StoryRemoteDataSource {
         query: String? = null,
         vararg status: Status,
         sort: Pair<SortBy, SortOrder>? = null,
-        page: Int? = -1
+        page: Int? = 1
     ): List<StoryRemoteModel>
 
     suspend fun getStoryDetails(storyId: Int): StoryDetailsRemoteModel?
 
     suspend fun getStoryChapters(
         storyId: Int,
-        page: Int? = -1
+        page: Int? = 1
     ): List<ChapterRemoteModel>
 }
 
@@ -41,14 +42,19 @@ class StoryRemoteDataSourceImpl @Inject constructor(
         sort: Pair<SortBy, SortOrder>?,
         page: Int?
     ): List<StoryRemoteModel> = withContext(ioDispatcher) {
-        val response = kBooksService.getStories(
-            query = query,
-            status = status.takeIf { it.isNotEmpty() }?.joinToString(",")?.lowercase(),
-            sort = sort?.let { "${sort.first}.${sort.second}".lowercase() },
-            page = page
-        )
+        return@withContext try {
+            val response = kBooksService.getStories(
+                query = query,
+                status = status.takeIf { it.isNotEmpty() }?.joinToString(",")?.lowercase(),
+                sort = sort?.let { "${sort.first}.${sort.second}".lowercase() },
+                page = page
+            )
 
-        return@withContext response.data ?: emptyList()
+            response.data ?: emptyList()
+        } catch (e: Exception) {
+            Timber.e(e)
+            emptyList()
+        }
     }
 
     override suspend fun getStoryDetails(
