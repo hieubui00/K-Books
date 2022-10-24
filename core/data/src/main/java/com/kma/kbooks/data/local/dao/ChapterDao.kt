@@ -16,9 +16,9 @@ interface ChapterDao {
     @Query("SELECT * FROM chapters WHERE chapterId = :chapterId LIMIT 1")
     suspend fun getChapter(chapterId: Int): ChapterLocalModel?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertChapter(vararg chapters: ChapterLocalModel)
 
     @Update
-    suspend fun updateChapter(chapterLocalModel: ChapterLocalModel)
+    suspend fun updateChapter(chapter: ChapterLocalModel)
 }

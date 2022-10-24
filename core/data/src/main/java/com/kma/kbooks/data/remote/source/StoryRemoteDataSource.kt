@@ -9,7 +9,6 @@ import com.kma.kbooks.domain.util.SortBy
 import com.kma.kbooks.domain.util.SortOrder
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -42,19 +41,14 @@ class StoryRemoteDataSourceImpl @Inject constructor(
         sort: Pair<SortBy, SortOrder>?,
         page: Int?
     ): List<StoryRemoteModel> = withContext(ioDispatcher) {
-        return@withContext try {
-            val response = kBooksService.getStories(
-                query = query,
-                status = status.takeIf { it.isNotEmpty() }?.joinToString(",")?.lowercase(),
-                sort = sort?.let { "${sort.first}.${sort.second}".lowercase() },
-                page = page
-            )
+        val response = kBooksService.getStories(
+            query = query,
+            status = status.takeIf { it.isNotEmpty() }?.joinToString(",")?.lowercase(),
+            sort = sort?.let { "${sort.first}.${sort.second}".lowercase() },
+            page = page
+        )
 
-            response.data ?: emptyList()
-        } catch (e: Exception) {
-            Timber.e(e)
-            emptyList()
-        }
+        return@withContext response.data ?: emptyList()
     }
 
     override suspend fun getStoryDetails(

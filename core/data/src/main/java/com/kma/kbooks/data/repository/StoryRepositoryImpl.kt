@@ -1,9 +1,10 @@
 package com.kma.kbooks.data.repository
 
+import com.kma.kbooks.data.local.model.asDetailsEntity
 import com.kma.kbooks.data.local.model.asEntity
 import com.kma.kbooks.data.local.source.ChapterLocalDataSource
+import com.kma.kbooks.data.local.source.StoryLocalDataSource
 import com.kma.kbooks.data.remote.model.chapter.asEntity
-import com.kma.kbooks.data.remote.model.chapter.asLocalModel
 import com.kma.kbooks.data.remote.model.story.asEntity
 import com.kma.kbooks.data.remote.source.StoryRemoteDataSource
 import com.kma.kbooks.domain.data.model.Chapter
@@ -19,7 +20,9 @@ import javax.inject.Inject
 class StoryRepositoryImpl @Inject constructor(
     private val storyRemoteDataSource: StoryRemoteDataSource,
 
-    private val storyLocalDataSource: ChapterLocalDataSource,
+    private val storyLocalDataSource: StoryLocalDataSource,
+
+    private val chapterLocalDataSource: ChapterLocalDataSource,
 ) : StoryRepository {
 
     override suspend fun getStories(
@@ -27,25 +30,29 @@ class StoryRepositoryImpl @Inject constructor(
         vararg status: Status,
         sort: Pair<SortBy, SortOrder>?,
         page: Int?
-    ): List<Story> = storyRemoteDataSource.getStories(
-        query = query,
-        status = status,
-        sort = sort,
-        page = page
-    ).map { it.asEntity() }
+    ): List<Story> = try {
+        storyRemoteDataSource.getStories(
+            query = query,
+            status = status,
+            sort = sort,
+            page = page
+        ).map { it.asEntity() }
+    } catch (e: Exception) {
+        Timber.e(e)
+        emptyList()
+    }
 
-    override suspend fun getStoryDetails(storyId: Int): StoryDetails? {
-        return storyRemoteDataSource.getStoryDetails(storyId)?.asEntity()
+    override suspend fun getStoryDetails(storyId: Int): StoryDetails? = try {
+        storyRemoteDataSource.getStoryDetails(storyId)?.asEntity()
+    } catch (e: Exception) {
+        Timber.e(e)
+        storyLocalDataSource.getStory(storyId)?.asDetailsEntity()
     }
 
     override suspend fun getStoryChapters(storyId: Int, page: Int): List<Chapter> = try {
-        val chapters = storyRemoteDataSource.getStoryChapters(storyId, page)
-        val data = chapters.map { it.asLocalModel(storyId) }.toTypedArray()
-
-        storyLocalDataSource.saveChapter(*data)
-        chapters.map { it.asEntity() }
+        storyRemoteDataSource.getStoryChapters(storyId, page).map { it.asEntity() }
     } catch (e: Exception) {
         Timber.e(e)
-        storyLocalDataSource.getChapters(storyId, page).map { it.asEntity() }
+        chapterLocalDataSource.getChapters(storyId, page).map { it.asEntity() }
     }
 }
