@@ -16,7 +16,13 @@ interface StoryRepository {
         page: Int? = 1
     ): List<Story>
 
+    suspend fun getLocalStories(page: Int = 1): List<Story>
+
     suspend fun getStoryDetails(storyId: Int): StoryDetails?
 
     suspend fun getStoryChapters(storyId: Int, page: Int = 1): List<Chapter>
+
+    suspend fun saveStory(vararg storyDetails: StoryDetails)
+
+    suspend fun deleteStory(storyDetails: StoryDetails)
 }

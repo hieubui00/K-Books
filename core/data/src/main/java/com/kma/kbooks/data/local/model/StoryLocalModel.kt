@@ -45,6 +45,19 @@ internal fun StoryLocalModel.asDetailsEntity(): StoryDetails = StoryDetails(
     rating = this.rating,
     status = this.status,
     genres = emptyList(),
+    publishedAt = this.publishedAt,
+    isFavourite = true,
+)
+
+internal fun StoryDetails.asLocalModel(): StoryLocalModel = StoryLocalModel(
+    storyId = this.storyId,
+    title = this.title,
+    author = this.author,
+    thumbnail = this.thumbnail,
+    summary = this.summary,
+    view = this.view,
+    rating = this.rating,
+    status = this.status,
     publishedAt = this.publishedAt
 )
 

@@ -40,7 +40,7 @@ internal fun StoryDetailsRemoteModel.asLocalModel(): StoryLocalModel = StoryLoca
     publishedAt = this.publishedAt
 )
 
-internal fun StoryDetailsRemoteModel.asEntity(): StoryDetails = StoryDetails(
+internal fun StoryDetailsRemoteModel.asEntity(isFavourite: Boolean): StoryDetails = StoryDetails(
     storyId = this.storyId ?: -1,
     title = this.title,
     author = this.author,
@@ -50,5 +50,6 @@ internal fun StoryDetailsRemoteModel.asEntity(): StoryDetails = StoryDetails(
     rating = this.rating,
     status = this.status,
     genres = this.genres?.map { it.asEntity() },
-    publishedAt = this.publishedAt
+    publishedAt = this.publishedAt,
+    isFavourite = isFavourite
 )

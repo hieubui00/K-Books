@@ -34,7 +34,9 @@ data class StoryDetails(
 
     val genres: List<Genre>?,
 
-    val publishedAt: Date?
+    val publishedAt: Date?,
+
+    val isFavourite: Boolean = false
 ): Parcelable
 
 enum class Status {
