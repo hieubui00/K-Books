@@ -11,7 +11,11 @@ interface ChapterLocalDataSource {
 
     suspend fun getChapters(storyId: Int, page: Int = 1): List<ChapterLocalModel>
 
+    suspend fun getChapter(chapterId: Int): ChapterLocalModel?
+
     suspend fun saveChapter(vararg chapters: ChapterLocalModel)
+
+    suspend fun updateChapter(chapterLocalModel: ChapterLocalModel)
 }
 
 class ChapterLocalDataSourceImpl @Inject constructor(
@@ -31,7 +35,15 @@ class ChapterLocalDataSourceImpl @Inject constructor(
         return@withContext chapterDao.getChapterByStoryId(storyId, limit, offset)
     }
 
+    override suspend fun getChapter(chapterId: Int): ChapterLocalModel? = withContext(ioDispatcher) {
+        return@withContext chapterDao.getChapter(chapterId)
+    }
+
     override suspend fun saveChapter(vararg chapters: ChapterLocalModel) = withContext(ioDispatcher) {
         chapterDao.insertChapter(*chapters)
+    }
+
+    override suspend fun updateChapter(chapterLocalModel: ChapterLocalModel) = withContext(ioDispatcher) {
+        chapterDao.updateChapter(chapterLocalModel)
     }
 }
