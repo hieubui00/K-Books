@@ -77,6 +77,8 @@ dependencies {
     )
 
     implementation(
+        libs.room,
+        libs.roomRuntime,
         libs.okHTTP,
         libs.retrofit,
         libs.converterGSON
@@ -86,5 +88,8 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
 
-    kapt(kaptLibs.daggerCompiler)
+    kapt(
+        kaptLibs.roomCompiler,
+        kaptLibs.daggerCompiler,
+    )
 }
