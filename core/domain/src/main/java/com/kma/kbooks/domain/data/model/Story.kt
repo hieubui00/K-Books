@@ -1,5 +1,7 @@
 package com.kma.kbooks.domain.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.util.Date
 
 data class Story(
@@ -12,6 +14,7 @@ data class Story(
     val thumbnail: String?
 )
 
+@Parcelize
 data class StoryDetails(
     val storyId: Int = -1,
 
@@ -31,8 +34,10 @@ data class StoryDetails(
 
     val genres: List<Genre>?,
 
-    val publishedAt: Date?
-)
+    val publishedAt: Date?,
+
+    val isFavourite: Boolean = false
+) : Parcelable
 
 enum class Status {
     IMCOMING, COMPLETED

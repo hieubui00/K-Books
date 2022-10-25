@@ -89,7 +89,9 @@ class StoryDetailsFragment : Fragment() {
             BannerBox(
                 backdrop = storyDetails?.thumbnail,
                 poster = storyDetails?.thumbnail,
-                onBackPressed = this@StoryDetailsFragment::onBackPressed
+                isFavourite = storyDetails?.isFavourite ?: false,
+                onBackPressed = this@StoryDetailsFragment::onBackPressed,
+                onFavouriteChange = { viewModel.setFavourite(it) }
             )
 
             Text( // Title

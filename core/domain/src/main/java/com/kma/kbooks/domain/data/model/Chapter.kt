@@ -15,5 +15,7 @@ data class ChapterDetails(
 
     val name: String?,
 
-    val content: String?
+    val content: String?,
+
+    val storyId: Int = -1
 )

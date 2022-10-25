@@ -19,7 +19,9 @@ fun BannerBox(
     modifier: Modifier = Modifier,
     backdrop: String?,
     poster: String?,
-    onBackPressed: () -> Unit
+    isFavourite: Boolean,
+    onBackPressed: () -> Unit,
+    onFavouriteChange: (Boolean) -> Unit
 ) {
     Box(modifier = modifier.fillMaxWidth()) {
         Backdrop(
@@ -48,6 +50,16 @@ fun BannerBox(
                 .padding(vertical = 16.dp)
                 .padding(start = 16.dp),
             onClick = onBackPressed,
+            tint = Color.White
+        )
+
+        FavouriteButton(
+            modifier = Modifier
+                .padding(vertical = 16.dp)
+                .padding(end = 16.dp)
+                .align(alignment = Alignment.TopEnd),
+            isFavorite = isFavourite,
+            onCheckedChange = onFavouriteChange,
             tint = Color.White
         )
 

@@ -36,4 +36,11 @@ class StoryDetailsViewModel @Inject constructor(
 
         _storyDetails.postValue(storyDetails)
     }
+
+    fun setFavourite(isFavourite: Boolean): Job = viewModelScope.launch {
+        _storyDetails.value?.copy(isFavourite = isFavourite)?.let {
+            _storyDetails.postValue(it)
+            if (isFavourite) storyRepository.saveStory(it) else storyRepository.deleteStory(it)
+        }
+    }
 }

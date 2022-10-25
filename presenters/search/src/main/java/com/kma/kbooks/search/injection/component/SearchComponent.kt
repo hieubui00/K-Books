@@ -1,10 +1,8 @@
 package com.kma.kbooks.search.injection.component
 
-import androidx.lifecycle.SavedStateHandle
 import com.kma.kbooks.injection.component.MainComponent
 import com.kma.kbooks.search.injection.scope.SearchScope
 import com.kma.kbooks.search.ui.SearchFragment
-import dagger.BindsInstance
 import dagger.Component
 
 @SearchScope

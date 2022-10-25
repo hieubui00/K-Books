@@ -1,4 +1,4 @@
-package com.kma.kbooks.data.source
+package com.kma.kbooks.data.remote.source
 
 import com.kma.kbooks.data.remote.model.chapter.ChapterRemoteModel
 import com.kma.kbooks.data.remote.model.story.StoryDetailsRemoteModel
@@ -18,14 +18,14 @@ interface StoryRemoteDataSource {
         query: String? = null,
         vararg status: Status,
         sort: Pair<SortBy, SortOrder>? = null,
-        page: Int? = -1
+        page: Int? = 1
     ): List<StoryRemoteModel>
 
     suspend fun getStoryDetails(storyId: Int): StoryDetailsRemoteModel?
 
     suspend fun getStoryChapters(
         storyId: Int,
-        page: Int? = -1
+        page: Int? = 1
     ): List<ChapterRemoteModel>
 }
 

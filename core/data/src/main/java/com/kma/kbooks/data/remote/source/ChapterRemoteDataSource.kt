@@ -1,4 +1,4 @@
-package com.kma.kbooks.data.source
+package com.kma.kbooks.data.remote.source
 
 import com.kma.kbooks.data.remote.model.chapter.ChapterDetailsRemoteModel
 import com.kma.kbooks.data.remote.request.KBooksService

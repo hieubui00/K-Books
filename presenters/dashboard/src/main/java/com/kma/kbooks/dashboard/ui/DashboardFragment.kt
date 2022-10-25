@@ -20,6 +20,8 @@ import com.kma.kbooks.dashboard.injection.component.DaggerDashboardComponent
 import com.kma.kbooks.dashboard.ui.component.BottomNavigation
 import com.kma.kbooks.dashboard.ui.home.HomeScreen
 import com.kma.kbooks.dashboard.ui.home.HomeViewModel
+import com.kma.kbooks.dashboard.ui.library.LibraryScreen
+import com.kma.kbooks.dashboard.ui.library.LibraryViewModel
 import com.kma.kbooks.dashboard.util.Destination
 import com.kma.kbooks.domain.data.model.Status
 import com.kma.kbooks.domain.data.model.Story
@@ -32,7 +34,10 @@ import javax.inject.Inject
 
 class DashboardFragment : Fragment() {
     @Inject
-    lateinit var factory: ViewModelFactory<HomeViewModel>
+    lateinit var homeFactory: ViewModelFactory<HomeViewModel>
+
+    @Inject
+    lateinit var libraryFactory: ViewModelFactory<LibraryViewModel>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -86,9 +91,16 @@ class DashboardFragment : Fragment() {
             ) {
                 composable(Destination.HOME.route) {
                     HomeScreen(
-                        viewModel = viewModel(factory = factory),
+                        viewModel = viewModel(factory = homeFactory),
                         onNavigateToSearch = this@DashboardFragment::navigateToSearch,
                         onNavigateToStories = this@DashboardFragment::navigateToStories,
+                        onNavigateToStoryDetails = this@DashboardFragment::navigateToStoryDetails
+                    )
+                }
+
+                composable(Destination.LIBRARY.route) {
+                    LibraryScreen(
+                        viewModel = viewModel(factory = libraryFactory),
                         onNavigateToStoryDetails = this@DashboardFragment::navigateToStoryDetails
                     )
                 }
