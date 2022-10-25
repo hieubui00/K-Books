@@ -60,4 +60,3 @@ internal fun StoryDetails.asLocalModel(): StoryLocalModel = StoryLocalModel(
     status = this.status,
     publishedAt = this.publishedAt
 )
-

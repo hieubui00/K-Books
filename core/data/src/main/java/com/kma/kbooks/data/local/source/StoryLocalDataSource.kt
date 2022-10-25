@@ -32,7 +32,7 @@ class StoryLocalDataSourceImpl @Inject constructor(
         return@withContext storyDao.getStories(limit, offset)
     }
 
-    override suspend fun getStory(storyId: Int): StoryLocalModel? = withContext(ioDispatcher){
+    override suspend fun getStory(storyId: Int): StoryLocalModel? = withContext(ioDispatcher) {
         return@withContext storyDao.getStory(storyId)
     }
 

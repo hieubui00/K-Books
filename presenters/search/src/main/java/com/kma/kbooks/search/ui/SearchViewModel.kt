@@ -4,14 +4,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import androidx.paging.*
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.liveData
 import com.kma.kbooks.domain.data.model.Story
 import com.kma.kbooks.search.data.source.StoriesPagingSource
 import com.kma.kbooks.search.injection.scope.SearchScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

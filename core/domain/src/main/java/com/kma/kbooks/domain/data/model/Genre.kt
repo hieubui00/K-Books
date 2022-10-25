@@ -8,4 +8,4 @@ data class Genre(
     val genreId: Int?,
 
     val name: String?
-): Parcelable
+) : Parcelable

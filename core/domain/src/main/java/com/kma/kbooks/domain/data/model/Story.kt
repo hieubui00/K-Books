@@ -37,7 +37,7 @@ data class StoryDetails(
     val publishedAt: Date?,
 
     val isFavourite: Boolean = false
-): Parcelable
+) : Parcelable
 
 enum class Status {
     IMCOMING, COMPLETED
